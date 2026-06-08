@@ -1,0 +1,9 @@
+
+FullName                                                                                               
+--------                                                                                               
+C:\Users\hp\Documents\Dev\UI Inspo\payflow-v0\node_modules\lucide-react\dist\lucide-react.d.ts         
+C:\Users\hp\Documents\Dev\UI Inspo\payflow-v0\node_modules\lucide-react\dist\lucide-react.prefixed.d.ts
+C:\Users\hp\Documents\Dev\UI Inspo\payflow-v0\node_modules\lucide-react\dist\lucide-react.suffixed.d.ts
+
+
+
