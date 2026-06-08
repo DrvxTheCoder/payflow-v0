@@ -58,8 +58,8 @@ export function Sidebar({
   return (
     <aside
       className={cn(
-        "hidden h-full shrink-0 flex-col gap-3 px-3 text-sidebar-foreground transition-[width] duration-400 md:flex",
-        collapsed ? "w-28" : "w-68",
+        "hidden h-full shrink-0 flex-col gap-3 px-3 text-sidebar-foreground transition-[width] duration-400 md:flex ",
+        collapsed ? "w-28" : "min-w-46 w-68",
       )}
     >
       {/* Inner capsule: branding + nav */}
@@ -140,7 +140,7 @@ export function Sidebar({
         )}
       >
         <Link2 className="size-4 shrink-0" />
-        {!collapsed && <span>Add quick-link</span>}
+        {!collapsed && <span className="text-nowrap">Add quick-link</span>}
       </button>
 
       {/* Profile (outside capsule, bottom) */}

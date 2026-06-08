@@ -1,9 +1,14 @@
 "use client"
 
-import { Bar, BarChart, Cell, ResponsiveContainer, XAxis } from "recharts"
+import { ResponsiveContainer } from "recharts"
 import { MoreHorizontal } from "lucide-react"
 import { expensesData, incomeData } from "@/lib/data"
 import { cn } from "@/lib/utils"
+import { BarXAxis } from "@/components/charts/bar-x-axis";
+import { Grid } from "@/components/charts/grid"
+import { BarChart, BarChartProps } from "@/components/charts/bar-chart";
+import { Bar } from "@/components/charts/bar";
+import { ChartTooltip } from "@/components/charts/tooltip"
 
 function MiniBarChart({
   data,
@@ -15,26 +20,38 @@ function MiniBarChart({
   color: string
 }) {
   return (
-    <ResponsiveContainer width="100%" height={120}>
-      <BarChart data={data} margin={{ top: 8, right: 0, bottom: 0, left: 0 }}>
-        <XAxis
-          dataKey="month"
-          axisLine={false}
-          tickLine={false}
-          tick={{ fontSize: 11, fill: "var(--muted-foreground)" }}
-          dy={6}
-        />
-        <Bar dataKey="value" radius={[6, 6, 6, 6]} barSize={18}>
-          {data.map((_, i) => (
-            <Cell
-              key={i}
-              fill={i === highlightIndex ? color : `${color}`}
-              fillOpacity={i === highlightIndex ? 1 : 0.35}
-            />
-          ))}
-        </Bar>
-      </BarChart>
-    </ResponsiveContainer>
+
+    <>
+      {/* <ResponsiveContainer width="100%" height={120}>
+        <BarChart data={data} margin={{ top: 8, right: 0, bottom: 0, left: 0 }}>
+          <XAxis
+            dataKey="month"
+            axisLine={false}
+            tickLine={false}
+            tick={{ fontSize: 11, fill: "var(--muted-foreground)" }}
+            dy={6}
+          />
+          <Bar dataKey="value" radius={[6, 6, 6, 6]} barSize={18}>
+            {data.map((_, i) => (
+              <Cell
+                key={i}
+                fill={i === highlightIndex ? color : `${color}`}
+                fillOpacity={i === highlightIndex ? 1 : 0.35}
+              />
+            ))}
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer> */}
+      <div className="w-full h-fit z-10 p-0">
+        <BarChart data={data} xDataKey="month" animationDuration={1100}
+          animationEasing="cubic-bezier(0.85, 0, 0.15, 1)" barGap={0.4} barWidth={13} className="p-0 h-36">
+          <Grid horizontal />
+          <Bar dataKey="value" lineCap="round" fill="var(--chart-1)" fadedOpacity={0.3} groupGap={4} />
+          <BarXAxis />
+          <ChartTooltip showCrosshair={false} showDots={false} />
+        </BarChart>
+      </div>
+    </>
   )
 }
 
@@ -88,13 +105,7 @@ function StatCard({
         </span>
       </div>
 
-      <div className="relative mt-4">
-        <span
-          className="absolute left-1/2 top-0 z-10 -translate-x-1/2 rounded-md bg-foreground px-2 py-1 text-xs font-medium text-background"
-          aria-hidden="true"
-        >
-          {highlightLabel}
-        </span>
+      <div className="relative">
         <MiniBarChart
           data={data}
           highlightIndex={highlightIndex}
