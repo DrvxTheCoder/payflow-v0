@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ArrowDownUp, ChevronDown, MoreHorizontal } from "lucide-react"
 import {
   DropdownMenu,
@@ -9,6 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Button } from "@/components/animate-ui/primitives/buttons/button"
 
 const currencies = [
   { code: "USD", flag: "🇺🇸" },
@@ -51,6 +52,23 @@ function CurrencySelect({
 export function ExchangeCard() {
   const [from, setFrom] = useState(currencies[0])
   const [to, setTo] = useState(currencies[1])
+  const [amountFrom, setAmountFrom] = useState<number>(300)
+  const [amountTo, setAmountTo] = useState<number>(275.68)
+  const [rotated, setRotated] = useState(false)
+
+  const rates: Record<string, Record<string, number>> = {
+    USD: { EUR: 0.87, GBP: 0.75, USD: 1 },
+    EUR: { USD: 1.16, GBP: 0.86, EUR: 1 },
+    GBP: { USD: 1.34, EUR: 1.16, GBP: 1 },
+  }
+
+  function getRate(fromCode: string, toCode: string) {
+    return rates[fromCode]?.[toCode] ?? 1
+  }
+
+  useEffect(() => {
+    setAmountTo(Number((amountFrom * getRate(from.code, to.code)).toFixed(2)))
+  }, [amountFrom, from, to])
 
   return (
     <div className="rounded-[2rem] bg-card p-5 shadow-sm">
@@ -68,33 +86,49 @@ export function ExchangeCard() {
         <div className="flex items-center justify-between rounded-t-2xl border-2 border-primary/10 px-4 py-3">
           <CurrencySelect value={from} onChange={setFrom} />
           <input
-            type="text"
-            defaultValue="300"
+            type="number"
+            value={amountFrom}
+            onChange={(e) => setAmountFrom(Number(e.target.value || 0))}
             aria-label="Amount to exchange"
-            className="w-24 bg-transparent text-right text-lg font-semibold tabular-nums "
+            className="w-24 bg-transparent text-right text-lg font-semibold tabular-nums outline-none focus:outline-none"
           />
         </div>
         <div className="flex items-center justify-between rounded-b-2xl border-2 border-t-0 border-primary/10 px-4 py-3">
           <CurrencySelect value={to} onChange={setTo} />
           <input
-            type="text"
-            defaultValue="275.68"
+            type="number"
+            value={amountTo}
             aria-label="Converted amount"
             readOnly
-            className="w-24 bg-transparent text-right text-lg font-semibold tabular-nums outline-none"
+            className="w-24 bg-transparent text-right text-lg font-semibold tabular-nums outline-none focus:outline-none"
           />
         </div>
 
-        <button
-          className="absolute right-6 top-1/2 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border-2 border-primary/10 bg-card text-foreground hover:bg-secondary hover:size-11 transition-all ease-in-out cursor-pointer"
+        <Button
+          onClick={() => {
+            // animate rotation briefly
+            setRotated((r) => !r)
+
+            // swap currencies
+            setFrom((prev) => to)
+            setTo((prev) => from)
+
+            // swap amounts so the visible numbers flip as well
+            setAmountFrom((prev) => amountTo)
+            setAmountTo((prev) => amountFrom)
+          }}
+          className="absolute right-6 top-1/2 flex size-10 -translate-y-1/2 rounded-full items-center justify-center border-2 border-primary/10 bg-card cursor-pointer"
           aria-label="Swap currencies"
         >
-          <ArrowDownUp className="size-4" />
-        </button>
+          <ArrowDownUp
+            className="size-4 text-primary/20 transform transition-transform"
+            style={{ transform: rotated ? 'rotate(180deg)' : 'rotate(0deg)' }}
+          />
+        </Button>
       </div>
 
       <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground">
-        <span>1.00 USD = 0.92 Euro</span>
+        <span>1.00 {from.code} = {getRate(from.code, to.code).toFixed(2)} {to.code}</span>
         <span>Exchange Fee: $12.44</span>
       </div>
 

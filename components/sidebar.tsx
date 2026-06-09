@@ -115,12 +115,33 @@ export function Sidebar({
   onToggle: () => void
 }) {
   const [hoveredItem, setHoveredItem] = React.useState<string | null>(null)
+  const [isMobile, setIsMobile] = React.useState(false)
+
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 1024px)")
+    const handleMediaChange = (event: MediaQueryListEvent | MediaQueryList) => {
+      setIsMobile(event.matches)
+    }
+
+    handleMediaChange(mediaQuery)
+    mediaQuery.addEventListener("change", handleMediaChange)
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaChange)
+    }
+  }, [])
 
   return (
     <aside
       className={cn(
-        "hidden h-full shrink-0 flex-col gap-3 px-3 text-sidebar-foreground transition-[width] duration-400 md:flex ",
-        collapsed ? "w-28" : "w-68",
+        "h-full shrink-0 flex-col gap-3 px-3 text-sidebar-foreground transition-[width] duration-400 md:flex",
+        isMobile
+          ? collapsed
+            ? "hidden"
+            : "fixed inset-y-0 left-0 z-50 flex w-72 bg-sidebar/95 backdrop-blur-sm shadow-2xl md:static md:w-auto"
+          : collapsed
+          ? "w-28"
+          : "w-68",
       )}
     >
       {/* Inner capsule: branding + nav */}
