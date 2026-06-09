@@ -1,7 +1,7 @@
 import { ChevronRight, Plus, Pencil, LayoutGrid, CirclePlus, UserRoundPen } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { recentContacts } from "@/lib/data"
-import { DashboardSquareAddIcon } from "@hugeicons/core-free-icons"
+import { DashboardSquareAddIcon, AddCircleHalfDotIcon, UserStoryIcon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 
 export function RecentContacts() {
@@ -37,11 +37,11 @@ export function RecentContacts() {
 
         <div className="mt-5 flex gap-3">
           <button className="flex flex-1 items-center justify-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
-            <CirclePlus className="size-4" />
+            <HugeiconsIcon icon={AddCircleHalfDotIcon} className="size-4" />
             Add new
           </button>
           <button className="flex flex-1 items-center justify-center gap-2 rounded-full border border-border px-4 py-2.5 text-sm font-medium transition-colors hover:bg-secondary">
-            <UserRoundPen className="size-4" />
+            <HugeiconsIcon icon={UserStoryIcon} className="size-4" />
             Manage
           </button>
         </div>

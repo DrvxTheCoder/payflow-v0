@@ -13,11 +13,14 @@ import {
 import { PayflowMark } from "@/components/payflow-mark"
 import { HugeiconsIcon } from '@hugeicons/react'
 import { CircleArrowDownLeftIcon, CircleArrowUpRightIcon } from '@hugeicons/core-free-icons'
+import { USAFlagIcon } from "@/components/country-flag-icons/usa"
+import { UKFlagIcon } from "@/components/country-flag-icons/uk"
+import { EuroFlagIcon } from "@/components/country-flag-icons/euro"
 
 const currencies = [
-  { code: "USD", flag: "🇺🇸" },
-  { code: "EUR", flag: "🇪🇺" },
-  { code: "GBP", flag: "🇬🇧" },
+  { code: "USD", flag: <USAFlagIcon /> },
+  { code: "EUR", flag: <EuroFlagIcon /> },
+  { code: "GBP", flag: <UKFlagIcon /> },
 ]
 
 export function BalanceCard() {
@@ -40,7 +43,7 @@ export function BalanceCard() {
           <DropdownMenuTrigger
             render={
               <button className="flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm font-medium outline-none transition-colors hover:bg-white/15">
-                <span aria-hidden="true">{currency.flag}</span>
+                <div aria-hidden="true" className="flex items-center justify-center rounded-full p-0 size-4 overflow-hidden">{currency.flag}</div>
                 {currency.code}
                 <ChevronDown className="size-4 text-white/60" />
               </button>
@@ -50,7 +53,9 @@ export function BalanceCard() {
             <DropdownMenuGroup>
               {currencies.map((c) => (
                 <DropdownMenuItem key={c.code} onClick={() => setCurrency(c)}>
-                  <span aria-hidden="true">{c.flag}</span>
+                  <div aria-hidden="true" className="flex items-center justify-center rounded-full p-0 size-3 overflow-hidden">
+                    {c.flag}
+                  </div>
                   {c.code}
                 </DropdownMenuItem>
               ))}

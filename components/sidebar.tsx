@@ -1,5 +1,7 @@
 "use client"
 
+import * as React from "react"
+import { motion, AnimatePresence } from "motion/react"
 import {
   LayoutDashboard,
   CreditCard,
@@ -21,6 +23,11 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { 
+  TooltipProvider, 
+  Tooltip as Ttip, 
+  TooltipContent as TtipContent, 
+  TooltipTrigger as TtipTrigger } from "@/components/animate-ui/components/animate/tooltip"
 import { PayflowMark } from "@/components/payflow-mark"
 import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/react'
 import { Menu09Icon, Home04Icon, CreditCardIcon, Invoice01Icon, DashboardCircleIcon, HistoryIcon } from '@hugeicons/core-free-icons'
@@ -48,6 +55,58 @@ const navItems: SidebarNavItem[] = [
   { label: "History", icon: HistoryIcon, hugeicons: true, active: false },
 ]
 
+// 1. Extracted Nav Link element to a clean, isolated component to guarantee state tracking works
+interface NavLinkProps {
+  item: SidebarNavItem
+  collapsed: boolean
+  isHovered: boolean
+  onMouseEnter: () => void
+}
+
+function NavLink({ item, collapsed, isHovered, onMouseEnter }: NavLinkProps) {
+  return (
+    <a
+      href="#"
+      onMouseEnter={onMouseEnter}
+      className={cn(
+        "relative flex items-center gap-3 rounded-2xl p-1 text-sm font-medium transition-colors isolation-auto",
+        collapsed && "justify-center px-0 size-12",
+        item.active
+          ? "bg-linear-to-r from-white/15 to-white/1 text-sidebar-foreground"
+          : "text-sidebar-foreground/55 hover:text-sidebar-foreground",
+      )}
+    >
+      {/* 2. The Shared Layout Animation Capsule Layer */}
+      <AnimatePresence>
+        {isHovered && (
+          <motion.span
+            layoutId="sidebar-hover-pill"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              type: "spring",
+              stiffness: 350,
+              damping: 28,
+            }}
+            className="absolute inset-0 z-0 rounded-2xl bg-white/5 pointer-events-none"
+          />
+        )}
+      </AnimatePresence>
+
+      {/* 3. Added relative z-10 index layout classes to explicitly push contents forward */}
+      <div className={cn("relative z-10 flex items-center justify-center size-10 bg-white/5 rounded-xl text-sidebar-foreground", item.active && "bg-white/20" )}>
+        {item.hugeicons ? (
+          <HugeiconsIcon icon={item.icon} className="size-5 shrink-0" />
+        ) : (
+          <item.icon className="size-5 shrink-0" />
+        )}
+      </div>
+      {!collapsed && <span className="relative z-10">{item.label}</span>}
+    </a>
+  )
+}
+
 export function Sidebar({
   collapsed,
   onToggle,
@@ -55,20 +114,22 @@ export function Sidebar({
   collapsed: boolean
   onToggle: () => void
 }) {
+  const [hoveredItem, setHoveredItem] = React.useState<string | null>(null)
+
   return (
     <aside
       className={cn(
         "hidden h-full shrink-0 flex-col gap-3 px-3 text-sidebar-foreground transition-[width] duration-400 md:flex ",
-        collapsed ? "w-28" : "min-w-46 w-68",
+        collapsed ? "w-28" : "w-68",
       )}
     >
       {/* Inner capsule: branding + nav */}
-      <div className="flex flex-col rounded-[1.75rem] bg-linear-to-b from-white/8 to-white/2 p-3 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] ring-1 ring-white/5">
+      <div className="flex flex-col rounded-[1.75rem] bg-linear-to-b from-white/8 to-white/2 p-3 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] ring-1 ring-white/5 overflow-hidden">
         {/* Logo + hamburger */}
         <div
           className={cn(
-            "flex items-center px-1 py-3",
-            collapsed ? "justify-center" : "justify-between",
+            "flex items-center px-3 py-3 min-w-fit",
+            collapsed ? "" : "justify-between",
           )}
         >
           <div className="flex items-center gap-2 overflow-hidden">
@@ -93,62 +154,68 @@ export function Sidebar({
         </div>
 
         {/* Nav */}
-        <nav className={cn(
-            "mt-5 flex flex-col gap-1",
-            collapsed && "items-center justify-items-center "
-          )}>
+        <nav 
+          onMouseLeave={() => setHoveredItem(null)}
+          className={cn(
+            "mt-5 flex flex-col gap-1 min-w-fit px-2",
+            collapsed && "pl-2"
+          )}
+        >
           {navItems.map((item) => {
-            const link = (
-              <a
-                href="#"
-                className={cn(
-                  "flex items-center gap-3 rounded-2xl p-1 text-sm font-medium transition-colors",
-                  collapsed && "justify-center px-0 size-12",
-                  item.active
-                    ? "bg-linear-to-r from-white/15 to-white/1 text-sidebar-foreground"
-                    : "text-sidebar-foreground/55 hover:bg-white/5 hover:text-sidebar-foreground",
-                )}
-              >
-                <div className={cn("flex items-center justify-center size-10 bg-white/5 rounded-xl text-sidebar-foreground", item.active && "bg-white/20" )}>
-                  {item.hugeicons ? (
-                    <HugeiconsIcon icon={item.icon} className="size-5 shrink-0" />
-                  ) : (
-                    <item.icon className="size-5 shrink-0" />
-                  )}
-                </div>
-                {!collapsed && <span>{item.label}</span>}
-              </a>
-            )
-
             return collapsed ? (
               <Tooltip key={item.label}>
-                <TooltipTrigger render={link} />
+                <TooltipTrigger>
+                  <div>
+                    <NavLink
+                      item={item}
+                      collapsed={collapsed}
+                      isHovered={hoveredItem === item.label}
+                      onMouseEnter={() => setHoveredItem(item.label)}
+                    />
+                  </div>
+                </TooltipTrigger>
                 <TooltipContent side="right">{item.label}</TooltipContent>
               </Tooltip>
             ) : (
-              <div key={item.label}>{link}</div>
+              <div key={item.label}>
+                <NavLink
+                  item={item}
+                  collapsed={collapsed}
+                  isHovered={hoveredItem === item.label}
+                  onMouseEnter={() => setHoveredItem(item.label)}
+                />
+              </div>
             )
           })}
         </nav>
       </div>
 
       {/* Add a section (outside capsule) */}
-      <button
-        className={cn(
-          "flex items-center justify-center gap-2 rounded-2xl border border-dashed border-white/15 px-3 py-3 text-sm font-medium text-sidebar-foreground/55 transition-colors hover:border-white/30 hover:text-sidebar-foreground",
-          collapsed && "px-0",
-        )}
-      >
-        <Link2 className="size-4 shrink-0" />
-        {!collapsed && <span className="text-nowrap">Add quick-link</span>}
-      </button>
+      <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger className="w-full">
+          <button
+            className={cn(
+              "w-full flex items-center justify-center gap-2 rounded-2xl border border-dashed border-white/15 px-3 py-3 text-sm font-medium text-sidebar-foreground/55 transition-colors hover:border-white/30 hover:text-sidebar-foreground overflow-hidden cursor-pointer",
+              collapsed && "px-0",
+            )}
+          >
+            <Link2 className="size-4 shrink-0" />
+            {/* {!collapsed && <span className="text-nowrap">Add quick-link</span>} */}
+          </button>
+        </TooltipTrigger>
+        <TooltipContent side="bottom">
+          <p>Add quick-link</p>
+        </TooltipContent>
+      </Tooltip>
+      </TooltipProvider>
 
       {/* Profile (outside capsule, bottom) */}
       <div className="mt-auto">
         <div
           className={cn(
             "flex items-center gap-3 rounded-2xl p-6",
-            collapsed ? "justify-center p-0" : "bg-white/5",
+            collapsed ? "" : "bg-white/5",
           )}
         >
           <Avatar className="size-10 shrink-0">

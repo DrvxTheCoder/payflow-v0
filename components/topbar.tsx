@@ -4,6 +4,7 @@ import { Search, Bell, Mail, Command, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Menu09Icon } from "@hugeicons/core-free-icons"
+import { BellIconAnimated } from "./animated/icons/animated-bell-icon"
 
 export function Topbar({
   collapsed,
@@ -45,8 +46,9 @@ export function Topbar({
           className="relative rounded-full bg-card"
           aria-label="Notifications"
         >
-          <Bell className="size-4" />
-          <span className="absolute right-2.5 top-2.5 size-2 rounded-full bg-destructive ring-2 ring-card" />
+          {/* <Bell className="size-4" /> */}
+          <BellIconAnimated className="size-4" />
+          <span className="absolute right-2.5 top-2.5 size-1.5 rounded-full bg-destructive ring-1 ring-card" />
         </Button>
         <Button
           variant="outline"
