@@ -184,8 +184,9 @@ export function Sidebar({
         >
           {navItems.map((item) => {
             return collapsed ? (
-              <Tooltip key={item.label}>
-                <TooltipTrigger>
+            <Tooltip key={item.label}>
+              <TooltipTrigger 
+                render={
                   <div>
                     <NavLink
                       item={item}
@@ -194,9 +195,10 @@ export function Sidebar({
                       onMouseEnter={() => setHoveredItem(item.label)}
                     />
                   </div>
-                </TooltipTrigger>
-                <TooltipContent side="right">{item.label}</TooltipContent>
-              </Tooltip>
+                } 
+              />
+              <TooltipContent side="right">{item.label}</TooltipContent>
+            </Tooltip>
             ) : (
               <div key={item.label}>
                 <NavLink
@@ -214,7 +216,7 @@ export function Sidebar({
       {/* Add a section (outside capsule) */}
       <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger className="w-full">
+        <TooltipTrigger className="w-full" render={
           <button
             className={cn(
               "w-full flex items-center justify-center gap-2 rounded-2xl border border-dashed border-white/15 px-3 py-3 text-sm font-medium text-sidebar-foreground/55 transition-colors hover:border-white/30 hover:text-sidebar-foreground overflow-hidden cursor-pointer",
@@ -224,6 +226,7 @@ export function Sidebar({
             <Link2 className="size-4 shrink-0" />
             {/* {!collapsed && <span className="text-nowrap">Add quick-link</span>} */}
           </button>
+        }>
         </TooltipTrigger>
         <TooltipContent side="bottom">
           <p>Add quick-link</p>
