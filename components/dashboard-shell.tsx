@@ -8,6 +8,7 @@ import { RecentContacts } from "@/components/recent-contacts"
 import { TransactionsTable } from "@/components/transactions-table"
 import { AnalyticsPanel } from "@/components/analytics-panel"
 import { ExchangeCard } from "@/components/exchange-card"
+import { Map } from "@/components/ui/map"
 
 export function DashboardShell() {
   const [collapsed, setCollapsed] = useState(false)
@@ -25,6 +26,9 @@ export function DashboardShell() {
             <div className="flex flex-col gap-4 xl:col-span-3">
               <BalanceCard />
               <RecentContacts />
+              <div className="relative mx-auto h-50 w-full max-w-150 overflow-hidden rounded-xl border">
+                <Map />
+              </div>
             </div>
 
             <div className="xl:col-span-6">

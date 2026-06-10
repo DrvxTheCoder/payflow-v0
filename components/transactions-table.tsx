@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Search, SlidersHorizontal, MoreHorizontal } from "lucide-react"
 import {
   Table,
@@ -11,6 +12,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { BrandIcon } from "@/components/brand-icon"
 import { transactions, type TxStatus } from "@/lib/data"
 import { cn } from "@/lib/utils"
+import { RefreshButton } from "./unlumen-ui/refresh"
 
 const statusDot: Record<TxStatus, string> = {
   Received: "bg-emerald-500",
@@ -24,6 +26,15 @@ function formatAmount(amount: number) {
 }
 
 export function TransactionsTable() {
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleRefresh = async () => {
+    setIsLoading(true)
+    // Simulate network delay
+    await new Promise((resolve) => setTimeout(resolve, 500))
+    setIsLoading(false)
+  }
+
   return (
     <div className="flex h-fit flex-col rounded-[2rem] bg-card p-6 shadow-sm">
       <div className="flex items-start justify-between">
@@ -129,9 +140,10 @@ export function TransactionsTable() {
       </div>
 
       <div className="mt-4 flex justify-center">
-        <button className="rounded-full border border-border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-secondary">
+        {/* <button className="rounded-full border border-border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-secondary">
           View all transactions
-        </button>
+        </button> */}
+        <RefreshButton label="Refresh" className="p-4" />
       </div>
     </div>
   )
