@@ -55,21 +55,21 @@ export function RefreshButton({
         className,
       )}
       onTapStart={() =>
-        animateTo(38, { type: "spring", stiffness: 400, damping: 25 })
+        animateTo(30, { type: "spring", stiffness: 400, damping: 25 })
       }
       onTap={async () => {
         await onRefresh?.();
-        await animateTo(-340, {
+        await animateTo(-390, {
           type: "spring",
           stiffness: 200,
           damping: 18,
         });
       }}
       onTapCancel={() =>
-        animateTo(-340, { type: "spring", stiffness: 200, damping: 18 })
+        animateTo(340, { type: "spring", stiffness: 200, damping: 18 })
       }
-      // whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 1 }}
       disabled={disabled}
       {...props}
     >

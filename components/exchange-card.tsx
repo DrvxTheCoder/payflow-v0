@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/animate-ui/primitives/buttons/button"
+import { Button } from "@/components/ui/button"
 
 const currencies = [
   { code: "USD", flag: "🇺🇸" },
@@ -74,12 +74,9 @@ export function ExchangeCard() {
     <div className="rounded-[2rem] bg-card p-5 shadow-sm">
       <div className="flex items-center justify-between">
         <h3 className="text-base font-semibold">Exchange</h3>
-        <button
-          className="flex size-7 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-secondary"
-          aria-label="More options"
-        >
+        <Button variant="outline" size="icon-sm" className="flex size-7 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-secondary">
           <MoreHorizontal className="size-4" />
-        </button>
+        </Button>
       </div>
 
       <div className="relative mt-4 flex flex-col gap-0">
@@ -117,8 +114,10 @@ export function ExchangeCard() {
             setAmountFrom((prev) => amountTo)
             setAmountTo((prev) => amountFrom)
           }}
-          className="absolute right-6 top-1/2 flex size-10 -translate-y-1/2 rounded-full items-center justify-center border-2 border-primary/10 bg-card cursor-pointer"
+          className="absolute right-6 top-1/2 flex -translate-y-1/2 rounded-full items-center justify-center border-2 border-primary/10 bg-card cursor-pointer"
           aria-label="Swap currencies"
+          variant="outline"
+          size="icon"
         >
           <ArrowDownUp
             className="size-4 text-primary/20 transform transition-transform"
@@ -132,9 +131,9 @@ export function ExchangeCard() {
         <span>Exchange Fee: $12.44</span>
       </div>
 
-      <button className="mt-4 w-full rounded-full bg-primary py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
+      <Button className="mt-4 w-full rounded-full bg-primary p-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
         Exchange
-      </button>
+      </Button>
     </div>
   )
 }
