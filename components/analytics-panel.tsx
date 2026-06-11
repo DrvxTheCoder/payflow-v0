@@ -12,12 +12,12 @@ import { ChartTooltip } from "@/components/charts/tooltip"
 
 function MiniBarChart({
   data,
-  highlightIndex,
   color,
+  gridLines,
 }: {
   data: { month: string; value: number }[]
-  highlightIndex: number
   color: string
+  gridLines?: number
 }) {
   return (
 
@@ -44,11 +44,11 @@ function MiniBarChart({
       </ResponsiveContainer> */}
       <div className="w-full h-fit z-10 p-0">
         <BarChart data={data} xDataKey="month" animationDuration={1100}
-          animationEasing="cubic-bezier(0.85, 0, 0.15, 1)" barGap={0.4} barWidth={13} className="p-0 h-36">
-          <Grid horizontal />
-          <Bar dataKey="value" lineCap="round" fill="var(--chart-1)" fadedOpacity={0.3} groupGap={4} />
+          animationEasing="cubic-bezier(0.85, 0, 0.15, 1)" barGap={0.4} barWidth={20} className="p-0 h-36">
+          <Grid horizontal numTicksRows={gridLines} />
+          <Bar dataKey="value" lineCap="round" fill={color} fadedOpacity={0.3} groupGap={4} />
           <BarXAxis />
-          <ChartTooltip showCrosshair={false} showDots={false} />
+          <ChartTooltip showCrosshair={false} showDots={true} />
         </BarChart>
       </div>
     </>
@@ -62,8 +62,6 @@ function StatCard({
   badge,
   positive,
   data,
-  highlightIndex,
-  highlightLabel,
   color,
 }: {
   title: string
@@ -72,12 +70,10 @@ function StatCard({
   badge: string
   positive: boolean
   data: { month: string; value: number }[]
-  highlightIndex: number
-  highlightLabel: string
   color: string
 }) {
   return (
-    <div className="rounded-3xl bg-card p-5 shadow-sm">
+    <div className="rounded-3xl bg-card p-8 shadow-sm">
       <div className="flex items-center justify-between">
         <h3 className="text-base font-semibold">{title}</h3>
         <button
@@ -108,8 +104,8 @@ function StatCard({
       <div className="relative">
         <MiniBarChart
           data={data}
-          highlightIndex={highlightIndex}
           color={color}
+          gridLines={4}
         />
       </div>
     </div>
@@ -126,8 +122,6 @@ export function AnalyticsPanel() {
         badge="-8% vs Prev year"
         positive={false}
         data={expensesData}
-        highlightIndex={3}
-        highlightLabel="$12,243.23"
         color="oklch(0.82 0.13 85)"
       />
       <StatCard
@@ -137,8 +131,6 @@ export function AnalyticsPanel() {
         badge="+14% vs Prev year"
         positive
         data={incomeData}
-        highlightIndex={3}
-        highlightLabel="$16,243.23"
         color="oklch(0.45 0.005 70)"
       />
     </div>

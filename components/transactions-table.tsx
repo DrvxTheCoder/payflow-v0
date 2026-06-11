@@ -14,6 +14,7 @@ import { transactions, type TxStatus } from "@/lib/data"
 import { cn } from "@/lib/utils"
 import { RefreshButton } from "./unlumen-ui/refresh"
 import { ShimmerSkeleton } from "./unlumen-ui/shimmer-skeleton"
+import ExpandableSearchBar from "./expandable-search-bar"
 
 const statusDot: Record<TxStatus, string> = {
   Received: "bg-emerald-500",
@@ -46,12 +47,13 @@ export function TransactionsTable() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <button
+          {/* <button
             className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-secondary"
             aria-label="Search transactions"
           >
             <Search className="size-4" />
-          </button>
+          </button> */}
+          <ExpandableSearchBar placeholder="Search transactions..." expandDirection="left" />
           <button
             className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-secondary"
             aria-label="Filter transactions"
@@ -83,7 +85,7 @@ export function TransactionsTable() {
           <TableBody>
             {isLoading
               ? Array.from({ length: 9 }).map((_, index) => (
-                  <TableRow key={`skeleton-${index}`} className="border-border/40">
+                  <TableRow key={`skeleton-${index}`} className="border-border/40 group" tabIndex={0}>
                     <TableCell className="py-3">
                       <div className="flex items-center gap-3">
                         <ShimmerSkeleton
@@ -110,7 +112,7 @@ export function TransactionsTable() {
                     </TableCell>
                     <TableCell>
                       <button
-                        className="flex size-7 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-secondary"
+                        className="flex size-7 items-center justify-center rounded-full text-muted-foreground transition-opacity duration-150 opacity-100 sm:opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 hover:bg-secondary"
                         aria-label="More options"
                       >
                         <MoreHorizontal className="size-4" />
@@ -119,7 +121,7 @@ export function TransactionsTable() {
                   </TableRow>
                 ))
               : transactions.map((tx) => (
-                  <TableRow key={tx.id} className="border-border/40">
+                  <TableRow key={tx.id} className="border-border/40 group" tabIndex={0}>
                     <TableCell className="py-3">
                       <div className="flex items-center gap-3">
                         {tx.brand ? (
@@ -165,7 +167,7 @@ export function TransactionsTable() {
                     </TableCell>
                     <TableCell>
                       <button
-                        className="flex size-7 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-secondary"
+                        className="flex size-7 items-center justify-center rounded-full text-muted-foreground transition-opacity duration-150 opacity-100 sm:opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 hover:bg-secondary"
                         aria-label="More options"
                       >
                         <MoreHorizontal className="size-4" />
