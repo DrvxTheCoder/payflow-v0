@@ -114,13 +114,12 @@ export function ExchangeCard() {
             setAmountFrom((prev) => amountTo)
             setAmountTo((prev) => amountFrom)
           }}
-          className="absolute right-6 top-1/2 flex -translate-y-1/2 rounded-full items-center justify-center border-2 border-primary/10 bg-card cursor-pointer"
+          className="absolute right-6 top-1/2 flex -translate-y-1/2 bg-card hover:bg-muted rounded-full items-center justify-center border-2 border-primary/10 cursor-pointer "
           aria-label="Swap currencies"
-          variant="outline"
           size="icon"
         >
           <ArrowDownUp
-            className="size-4 text-primary/20 transform transition-transform"
+            className="size-4 text-primary transform transition-transform"
             style={{ transform: rotated ? 'rotate(180deg)' : 'rotate(0deg)' }}
           />
         </Button>

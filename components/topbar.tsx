@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Menu09Icon } from "@hugeicons/core-free-icons"
 import { BellIconAnimated } from "./animated/icons/animated-bell-icon"
+import { ModeToggle } from "@/components/theme-toggle"
 
 export function Topbar({
   collapsed,
@@ -14,7 +15,7 @@ export function Topbar({
   onToggle: () => void
 }) {
   return (
-    <header className="flex items-center justify-between gap-4 p-6 sticky top-0 z-10 bg-background/50 backdrop-blur rounded-t-3xl">
+    <header className="flex items-center justify-between gap-4 p-6 sticky top-0 z-30 bg-background/50 backdrop-blur rounded-t-3xl">
       <div className="flex flex-1 items-center gap-3">
         {collapsed && (
           <button
@@ -40,6 +41,7 @@ export function Topbar({
       </div>
 
       <div className="flex items-center gap-2">
+        <ModeToggle />
         <Button
           variant="outline"
           size="icon-lg"

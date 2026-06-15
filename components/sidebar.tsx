@@ -72,7 +72,7 @@ function NavLink({ item, collapsed, isHovered, onMouseEnter }: NavLinkProps) {
         "relative flex items-center gap-3 rounded-2xl p-1 text-sm font-medium transition-colors isolation-auto",
         collapsed && "justify-center px-0 size-12",
         item.active
-          ? "bg-linear-to-r from-white/15 to-white/1 text-sidebar-foreground"
+          ? "bg-linear-to-r from-sidebar-foreground/15 to-sidebar-foreground/1 text-sidebar-foreground"
           : "text-sidebar-foreground/55 hover:text-sidebar-foreground",
       )}
     >
@@ -89,13 +89,13 @@ function NavLink({ item, collapsed, isHovered, onMouseEnter }: NavLinkProps) {
               stiffness: 350,
               damping: 28,
             }}
-            className="absolute inset-0 z-0 rounded-2xl bg-white/5 pointer-events-none"
+            className="absolute inset-0 z-0 rounded-2xl bg-sidebar-foreground/5 pointer-events-none"
           />
         )}
       </AnimatePresence>
 
       {/* 3. Added relative z-10 index layout classes to explicitly push contents forward */}
-      <div className={cn("relative z-10 flex items-center justify-center size-10 bg-white/5 rounded-xl text-sidebar-foreground", item.active && "bg-white/20" )}>
+      <div className={cn("relative z-10 flex items-center justify-center size-10 bg-sidebar-foreground/5 rounded-xl text-sidebar-foreground", item.active && "bg-sidebar-foreground/20" )}>
         {item.hugeicons ? (
           <HugeiconsIcon icon={item.icon} className="size-5 shrink-0" />
         ) : (
@@ -134,18 +134,18 @@ export function Sidebar({
   return (
     <aside
       className={cn(
-        "h-full shrink-0 flex-col gap-3 px-3 text-sidebar-foreground transition-[width] duration-400 md:flex",
+        "h-full shrink-0 flex-col gap-3 text-sidebar-foreground transition-[width] duration-400 ease-in-out overflow-hidden flex",
         isMobile
           ? collapsed
-            ? "hidden"
-            : "fixed inset-y-0 left-0 z-50 flex w-72 bg-sidebar/95 backdrop-blur-sm shadow-2xl md:static md:w-auto"
+            ? "w-0 px-0"
+            : "w-72 px-3"
           : collapsed
-          ? "w-28"
-          : "w-68",
+          ? "w-28 px-3"
+          : "w-68 px-3",
       )}
     >
       {/* Inner capsule: branding + nav */}
-      <div className="flex flex-col rounded-[1.75rem] bg-linear-to-b from-white/8 to-white/2 p-3 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] ring-1 ring-white/5 overflow-hidden">
+      <div className="flex flex-col rounded-[1.75rem] bg-linear-to-b from-sidebar-foreground/8 to-sidebar-foreground/2 p-3 shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5 overflow-hidden">
         {/* Logo + hamburger */}
         <div
           className={cn(
@@ -154,7 +154,7 @@ export function Sidebar({
           )}
         >
           <div className="flex items-center gap-2 overflow-hidden">
-            <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white text-sidebar">
+            <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-sidebar-foreground text-sidebar">
               <PayflowMark className="size-6" />
             </span>
             {!collapsed && (
@@ -166,7 +166,7 @@ export function Sidebar({
           {!collapsed && (
             <button
               onClick={onToggle}
-              className="rounded-full p-2 text-sidebar-foreground/60 transition-colors hover:bg-white/10 hover:text-sidebar-foreground"
+              className="rounded-full p-2 text-sidebar-foreground/60 transition-colors hover:bg-sidebar-foreground/10 hover:text-sidebar-foreground"
               aria-label="Collapse sidebar"
             >
               <HugeiconsIcon icon={Menu09Icon} className="size-5" />
@@ -219,7 +219,7 @@ export function Sidebar({
         <TooltipTrigger className="w-full" render={
           <button
             className={cn(
-              "w-full flex items-center justify-center gap-2 rounded-2xl border border-dashed border-white/15 px-3 py-3 text-sm font-medium text-sidebar-foreground/55 transition-colors hover:border-white/30 hover:text-sidebar-foreground overflow-hidden cursor-pointer",
+              "w-full flex items-center justify-center gap-2 rounded-2xl border border-dashed border-sidebar-foreground/15 px-3 py-3 text-sm font-medium text-sidebar-foreground/55 transition-colors hover:border-sidebar-foreground/30 hover:text-sidebar-foreground overflow-hidden cursor-pointer",
               collapsed && "px-0",
             )}
           >
@@ -239,7 +239,7 @@ export function Sidebar({
         <div
           className={cn(
             "flex items-center gap-3 rounded-2xl p-6",
-            collapsed ? "" : "bg-white/5",
+            collapsed ? "" : "bg-sidebar-foreground/5",
           )}
         >
           <Avatar className="size-10 shrink-0">
@@ -257,7 +257,7 @@ export function Sidebar({
               <Button
                 variant="ghost"
                 size="icon"
-                className="size-10 text-sidebar-foreground/60 hover:bg-white/10 hover:text-sidebar-foreground rounded-full"
+                className="size-10 text-sidebar-foreground/60 hover:bg-sidebar-foreground/10 hover:text-sidebar-foreground rounded-full"
                 aria-label="Settings"
               >
                 <Power className="size-5" />

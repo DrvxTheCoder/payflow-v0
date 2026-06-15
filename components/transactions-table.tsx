@@ -183,7 +183,7 @@ export function TransactionsTable() {
         {/* <button className="rounded-full border border-border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-secondary">
           View all transactions
         </button> */}
-        <RefreshButton label="Refresh" className="p-4 bg-white" onClick={handleRefresh} variant="outline" />
+        <RefreshButton label="Refresh" className="p-4 bg-card" onClick={handleRefresh} variant="outline" />
       </div>
     </div>
   )

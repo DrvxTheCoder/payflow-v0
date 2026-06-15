@@ -3,10 +3,10 @@ import { cn } from "@/lib/utils"
 type BrandKey = "segment" | "focalpoint" | "biosyntesis" | "galileo"
 
 const styles: Record<BrandKey, string> = {
-  segment: "bg-blue-100 text-blue-600",
-  focalpoint: "bg-violet-100 text-violet-600",
-  biosyntesis: "bg-indigo-100 text-indigo-600",
-  galileo: "bg-sky-100 text-sky-600",
+  segment: "bg-blue-100 text-blue-600 dark:bg-blue-500/15 dark:text-blue-400",
+  focalpoint: "bg-violet-100 text-violet-600 dark:bg-violet-500/15 dark:text-violet-400",
+  biosyntesis: "bg-indigo-100 text-indigo-600 dark:bg-indigo-500/15 dark:text-indigo-400",
+  galileo: "bg-sky-100 text-sky-600 dark:bg-sky-500/15 dark:text-sky-400",
 }
 
 export function BrandIcon({

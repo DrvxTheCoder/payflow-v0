@@ -44,7 +44,7 @@ function MiniBarChart({
       </ResponsiveContainer> */}
       <div className="w-full h-fit z-10 p-0">
         <BarChart data={data} xDataKey="month" animationDuration={1100}
-          animationEasing="cubic-bezier(0.85, 0, 0.15, 1)" barGap={0.4} barWidth={20} className="p-0 h-36">
+          animationEasing="cubic-bezier(0.85, 0, 0.15, 1)" barGap={0.4} barWidth={20} className="px-0 h-36 w-full">
           <Grid horizontal numTicksRows={gridLines} />
           <Bar dataKey="value" lineCap="round" fill={color} fadedOpacity={0.3} groupGap={4} />
           <BarXAxis />
@@ -93,8 +93,8 @@ function StatCard({
           className={cn(
             "rounded-md px-1.5 py-0.5 text-xs font-medium",
             positive
-              ? "bg-emerald-100 text-emerald-700"
-              : "bg-red-100 text-red-600",
+              ? "bg-success-muted text-success-muted-foreground"
+              : "bg-destructive-muted text-destructive-muted-foreground",
           )}
         >
           {badge}
@@ -122,7 +122,7 @@ export function AnalyticsPanel() {
         badge="-8% vs Prev year"
         positive={false}
         data={expensesData}
-        color="oklch(0.82 0.13 85)"
+        color="var(--chart-1)"
       />
       <StatCard
         title="Total Income"
@@ -131,7 +131,7 @@ export function AnalyticsPanel() {
         badge="+14% vs Prev year"
         positive
         data={incomeData}
-        color="oklch(0.45 0.005 70)"
+        color="var(--chart-3)"
       />
     </div>
   )
