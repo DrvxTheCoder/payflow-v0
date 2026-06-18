@@ -25,7 +25,7 @@ export default function ExpandableSearchBar(props: ExpandableSearchBarProps) {
     onSearch,
     className = '',
     defaultOpen = false,
-    width = 280,
+    width = 240,
   } = props;
 
   const [open, setOpen] = useState(defaultOpen);

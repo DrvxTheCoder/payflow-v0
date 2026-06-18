@@ -6,6 +6,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { Menu09Icon } from "@hugeicons/core-free-icons"
 import { BellIconAnimated } from "./animated/icons/animated-bell-icon"
 import { ModeToggle } from "@/components/theme-toggle"
+import { CommandMenu } from "@/components/command-menu"
 
 export function Topbar({
   collapsed,
@@ -20,24 +21,13 @@ export function Topbar({
         {collapsed && (
           <button
             onClick={onToggle}
-            className="flex size-11 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+            className="flex shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
             aria-label="Expand sidebar"
           >
             <HugeiconsIcon icon={Menu09Icon} className="size-5 text-primary" />
           </button>
         )}
-        <div className="relative w-full max-w-xs">
-          <Search className="pointer-events-none absolute left-4 top-1/2 size-5 -translate-y-1/2 text-muted-foreground" />
-          <input
-            type="search"
-            placeholder="Search anything..."
-            aria-label="Search"
-            className="h-11 w-full rounded-full border border-primary/10 pl-11 pr-20 text-sm text-foreground outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring/30"
-          />
-          <span className="absolute right-2 top-1/2 flex -translate-y-1/2 items-center gap-1 rounded-full bg-card px-3 py-2 text-xs font-medium text-muted-foreground">
-            <Command className="size-3" />F
-          </span>
-        </div>
+        <CommandMenu />
       </div>
 
       <div className="flex items-center gap-2">

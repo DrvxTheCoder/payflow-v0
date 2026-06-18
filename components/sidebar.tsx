@@ -115,37 +115,18 @@ export function Sidebar({
   onToggle: () => void
 }) {
   const [hoveredItem, setHoveredItem] = React.useState<string | null>(null)
-  const [isMobile, setIsMobile] = React.useState(false)
-
-  React.useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 1024px)")
-    const handleMediaChange = (event: MediaQueryListEvent | MediaQueryList) => {
-      setIsMobile(event.matches)
-    }
-
-    handleMediaChange(mediaQuery)
-    mediaQuery.addEventListener("change", handleMediaChange)
-
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaChange)
-    }
-  }, [])
 
   return (
     <aside
       className={cn(
-        "h-full shrink-0 flex-col gap-3 text-sidebar-foreground transition-[width] duration-400 ease-in-out overflow-hidden flex",
-        isMobile
-          ? collapsed
-            ? "w-0 px-0"
-            : "w-72 px-3"
-          : collapsed
-          ? "w-28 px-3"
-          : "w-68 px-3",
+        "h-full shrink-0 flex-col gap-3 text-sidebar-foreground transition-[width] duration-300 ease-in-out overflow-hidden flex",
+        collapsed
+          ? "w-0 px-0 lg:w-28 lg:px-3"
+          : "w-72 px-3 lg:w-68",
       )}
     >
       {/* Inner capsule: branding + nav */}
-      <div className="flex flex-col rounded-[1.75rem] bg-linear-to-b from-sidebar-foreground/8 to-sidebar-foreground/2 p-3 shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5 overflow-hidden">
+      <div className="flex flex-col rounded-3xl bg-linear-to-b from-sidebar-foreground/8 to-sidebar-foreground/2 p-3 shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5 overflow-hidden">
         {/* Logo + hamburger */}
         <div
           className={cn(

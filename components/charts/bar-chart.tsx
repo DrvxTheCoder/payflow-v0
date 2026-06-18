@@ -73,7 +73,7 @@ export interface BarChartProps {
   onPhaseChange?: (phase: ChartPhase) => void;
 }
 
-const DEFAULT_MARGIN: Margin = { top: 40, right: 40, bottom: 40, left: 40 };
+const DEFAULT_MARGIN: Margin = { top: 20, right: 10, bottom: 40, left: 10 };
 
 // Extract bar configs from children synchronously
 function extractBarConfigs(children: ReactNode): LineConfig[] {

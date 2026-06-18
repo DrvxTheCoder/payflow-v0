@@ -51,7 +51,7 @@ export function RefreshButton({
     <motion.button
       className={cn(
         buttonVariants({ variant, size: resolvedSize }),
-        "flex items-center rounded-lg",
+        "flex items-center rounded-lg select-none",
         className,
       )}
       onTapStart={() =>

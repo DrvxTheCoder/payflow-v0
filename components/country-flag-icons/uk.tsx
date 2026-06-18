@@ -1,8 +1,8 @@
 import type { SVGProps } from "react"
 
 export function UKFlagIcon({
-  width = 30,
-  height = 20,
+  width,
+  height,
   ...props
 }: SVGProps<SVGSVGElement>) {
   return (
