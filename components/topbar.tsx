@@ -16,12 +16,12 @@ export function Topbar({
   onToggle: () => void
 }) {
   return (
-    <header className="flex items-center justify-between gap-4 p-6 sticky top-0 z-30 bg-background/50 backdrop-blur rounded-t-3xl">
+    <header className="flex items-center justify-between gap-4 p-6 px-4 sticky top-0 z-30 bg-background/50 backdrop-blur rounded-t-3xl">
       <div className="flex flex-1 items-center gap-3">
         {collapsed && (
           <button
             onClick={onToggle}
-            className="flex shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+            className="flex shrink-0 items-center justify-center p-2 rounded-full text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
             aria-label="Expand sidebar"
           >
             <HugeiconsIcon icon={Menu09Icon} className="size-5 text-primary" />

@@ -57,7 +57,7 @@ export function DashboardShell() {
         <main className="flex-1 max-lg:min-w-full overflow-y-auto rounded-3xl bg-background pb-5 md:pb-6 no-scrollbar">
           <Topbar collapsed={collapsed} onToggle={toggle} />
 
-          <div className="grid grid-cols-1 gap-4 xl:grid-cols-12 px-4 md:px-6 pt-3">
+          <div className="grid grid-cols-1 gap-4 xl:grid-cols-12 px-2 md:px-3 pt-3">
             <div className="flex flex-col gap-4 xl:col-span-3">
               <BalanceCard />
               <AnalyticsPanel />
