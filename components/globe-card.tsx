@@ -7,7 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 export function GlobeDemo() {
   return (
     <div className="bg-background relative flex flex-col size-full max-w-lg items-center justify-center overflow-hidden rounded-lg border px-2 pt-10 md:pt-15 pb-40 md:pb-60">
-        <Button className="absolute inline-flex z-100 right-5 top-45 rounded-full bg-black text-white hover:bg-neutral-800">
+        <Button className="absolute inline-flex z-10 right-5 top-45 rounded-full bg-black text-white hover:bg-neutral-800">
           Learn more
           <ArrowUpRight className="size-4" />
         </Button>
@@ -30,7 +30,7 @@ export function GlobeDemo() {
 export function GlobeDemoContrast() {
   return (
     <div className="bg-[#ebbd57] relative flex flex-col size-full w-full items-center justify-center overflow-hidden rounded-2xl border px-2 pt-10 md:pt-15 pb-40 md:pb-60">
-        <Button className="absolute inline-flex z-100 right-5 top-45 rounded-full bg-black text-white hover:bg-neutral-800">
+        <Button className="absolute inline-flex z-10 right-5 top-45 rounded-full bg-black text-white hover:bg-neutral-800">
           Learn more
           <ArrowUpRight className="size-4" />
         </Button>

@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono, Inter, Google_Sans } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 import { TooltipProvider } from '@/components/ui/tooltip'
+import { SplashScreen } from '@/components/splash-screen'
 import './globals.css'
 
 
@@ -13,7 +14,10 @@ const geistMono = Geist_Mono({
 })
 
 const inter = Inter({ subsets: ['latin'] })
-const google_sans = Google_Sans({ subsets: ['latin'] })
+const google_sans = Google_Sans({
+  subsets: ['latin'],
+  fallback: ['system-ui', 'arial'],
+})
 
 export const metadata: Metadata = {
   title: 'Payflow — Dashboard',
@@ -53,13 +57,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      // className={`${google_sans.className} bg-background`}
-      className={`${geistSans.variable} ${geistMono.variable} bg-background`}
+      className={`${google_sans.className} bg-background`}
+      // className={`${geistSans.variable} ${geistMono.variable} bg-background`}
       suppressHydrationWarning
     >
       <body className="font-sans antialiased" suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <TooltipProvider>{children}</TooltipProvider>
+          <TooltipProvider>
+            <SplashScreen />
+            {children}
+          </TooltipProvider>
         </ThemeProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

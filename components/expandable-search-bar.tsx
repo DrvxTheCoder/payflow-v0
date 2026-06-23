@@ -11,6 +11,7 @@ export type ExpandableSearchBarProps = {
   expandDirection?: 'left' | 'right';
   placeholder?: string;
   onSearch?: (query: string) => void;
+  onChange?: (query: string) => void;
   className?: string;
   defaultOpen?: boolean;
   width?: number;
@@ -23,6 +24,7 @@ export default function ExpandableSearchBar(props: ExpandableSearchBarProps) {
     expandDirection = 'right',
     placeholder = 'Search...',
     onSearch,
+    onChange,
     className = '',
     defaultOpen = false,
     width = 240,
@@ -64,6 +66,10 @@ export default function ExpandableSearchBar(props: ExpandableSearchBarProps) {
     e.preventDefault();
     onSearch?.(value);
   };
+
+  useEffect(() => {
+    onChange?.(value);
+  }, [value, onChange]);
 
   useEffect(() => {
     function onDocClick(e: MouseEvent) {

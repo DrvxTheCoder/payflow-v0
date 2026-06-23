@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { Search, SlidersHorizontal, MoreHorizontal } from "lucide-react"
+import { useMemo, useState } from "react"
+import { Search, SlidersHorizontal, MoreHorizontal, ChevronLeft, ChevronRight } from "lucide-react"
 import {
   Table,
   TableBody,
@@ -27,8 +27,12 @@ function formatAmount(amount: number) {
   return `${sign} $${Math.abs(amount).toFixed(2)}`
 }
 
+const PAGE_SIZE = 9
+
 export function TransactionsTable() {
   const [isLoading, setIsLoading] = useState(false)
+  const [query, setQuery] = useState("")
+  const [page, setPage] = useState(1)
 
   const handleRefresh = async () => {
     setIsLoading(true)
@@ -36,6 +40,29 @@ export function TransactionsTable() {
     await new Promise((resolve) => setTimeout(resolve, 1500))
     setIsLoading(false)
   }
+
+  const handleSearch = (value: string) => {
+    setQuery(value)
+    setPage(1)
+  }
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase()
+    if (!q) return transactions
+    return transactions.filter(
+      (tx) =>
+        tx.name.toLowerCase().includes(q) ||
+        tx.account.toLowerCase().includes(q) ||
+        tx.status.toLowerCase().includes(q),
+    )
+  }, [query])
+
+  const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
+  const currentPage = Math.min(page, pageCount)
+  const paginated = filtered.slice(
+    (currentPage - 1) * PAGE_SIZE,
+    currentPage * PAGE_SIZE,
+  )
 
   return (
     <div className="flex h-fit flex-col rounded-[2rem] bg-card p-6 shadow-sm">
@@ -53,7 +80,11 @@ export function TransactionsTable() {
           >
             <Search className="size-4" />
           </button> */}
-          <ExpandableSearchBar placeholder="Search transactions..." expandDirection="left" />
+          <ExpandableSearchBar
+            placeholder="Search transactions..."
+            expandDirection="left"
+            onChange={handleSearch}
+          />
           <button
             className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-secondary"
             aria-label="Filter transactions"
@@ -120,7 +151,15 @@ export function TransactionsTable() {
                     </TableCell>
                   </TableRow>
                 ))
-              : transactions.map((tx) => (
+              : paginated.length === 0
+                ? (
+                  <TableRow className="border-border/40 hover:bg-transparent">
+                    <TableCell colSpan={5} className="py-10 text-center text-sm text-muted-foreground">
+                      No transactions found{query ? ` for "${query}"` : ""}.
+                    </TableCell>
+                  </TableRow>
+                )
+                : paginated.map((tx) => (
                   <TableRow key={tx.id} className="border-border/40 group" tabIndex={0}>
                     <TableCell className="py-3">
                       <div className="flex items-center gap-3">
@@ -179,11 +218,36 @@ export function TransactionsTable() {
         </Table>
       </div>
 
-      <div className="mt-4 flex justify-end">
-        {/* <button className="rounded-full border border-border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-secondary">
-          View all transactions
-        </button> */}
-        <RefreshButton label="Refresh" className="p-4 bg-card" onClick={handleRefresh} variant="outline" />
+      <div className="mt-4 flex items-center justify-between">
+        <p className="text-xs text-muted-foreground">
+          {filtered.length === 0
+            ? "0 results"
+            : `Showing ${(currentPage - 1) * PAGE_SIZE + 1}-${Math.min(currentPage * PAGE_SIZE, filtered.length)} of ${filtered.length}`}
+        </p>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+            disabled={currentPage <= 1}
+            aria-label="Previous page"
+            className="flex size-8 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-secondary disabled:pointer-events-none disabled:opacity-40"
+          >
+            <ChevronLeft className="size-4" />
+          </button>
+          <span className="text-xs tabular-nums text-muted-foreground">
+            {currentPage} / {pageCount}
+          </span>
+          <button
+            type="button"
+            onClick={() => setPage((p) => Math.min(pageCount, p + 1))}
+            disabled={currentPage >= pageCount}
+            aria-label="Next page"
+            className="flex size-8 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-secondary disabled:pointer-events-none disabled:opacity-40"
+          >
+            <ChevronRight className="size-4" />
+          </button>
+          <RefreshButton label="Refresh" className="p-4 bg-card" onClick={handleRefresh} variant="outline" disabled={isLoading} />
+        </div>
       </div>
     </div>
   )
