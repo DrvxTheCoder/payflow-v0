@@ -88,6 +88,7 @@ export function ExchangeCard() {
             onChange={(e) => setAmountFrom(Number(e.target.value || 0))}
             aria-label="Amount to exchange"
             className="w-24 bg-transparent text-right text-lg font-semibold tabular-nums outline-none focus:outline-none"
+            suppressHydrationWarning
           />
         </div>
         <div className="flex items-center justify-between rounded-b-2xl border-2 border-t-0 border-primary/10 px-4 py-3">
@@ -98,6 +99,7 @@ export function ExchangeCard() {
             aria-label="Converted amount"
             readOnly
             className="w-24 bg-transparent text-right text-lg font-semibold tabular-nums outline-none focus:outline-none"
+            suppressHydrationWarning
           />
         </div>
 
