@@ -32,6 +32,7 @@ import { PayflowMark } from "@/components/payflow-mark"
 import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/react'
 import { Menu09Icon, Home04Icon, CreditCardIcon, Invoice01Icon, DashboardCircleIcon, HistoryIcon } from '@hugeicons/core-free-icons'
 import { cn } from "@/lib/utils"
+import { TrustKycMark } from "./trustkyc-mark"
 
 type SidebarNavItem =
   | {
@@ -135,12 +136,10 @@ export function Sidebar({
           )}
         >
           <div className="flex items-center gap-2 overflow-hidden">
-            <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-sidebar-foreground text-sidebar">
-              <PayflowMark className="size-6" />
-            </span>
+            <TrustKycMark variant="filled" className="size-10" />
             {!collapsed && (
               <span className="text-lg font-semibold tracking-tight">
-                payflow<small className="text-xs align-super">™</small>
+                TrustKYC<small className="text-xs align-super">™</small>
               </span>
             )}
           </div>

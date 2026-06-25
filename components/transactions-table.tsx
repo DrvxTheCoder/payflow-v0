@@ -222,7 +222,7 @@ export function TransactionsTable() {
         <p className="text-xs text-muted-foreground">
           {filtered.length === 0
             ? "0 results"
-            : `Showing ${(currentPage - 1) * PAGE_SIZE + 1}-${Math.min(currentPage * PAGE_SIZE, filtered.length)} of ${filtered.length}`}
+            : `${(currentPage - 1) * PAGE_SIZE + 1}-${Math.min(currentPage * PAGE_SIZE, filtered.length)} / ${filtered.length}`}
         </p>
         <div className="flex items-center gap-2">
           <button

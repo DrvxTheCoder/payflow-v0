@@ -17,6 +17,7 @@ import { USAFlagIcon } from "@/components/country-flag-icons/usa"
 import { UKFlagIcon } from "@/components/country-flag-icons/uk"
 import { EuroFlagIcon } from "@/components/country-flag-icons/euro"
 import { AnimatedNumber } from "./motion-primitives/animated-number"
+import { TrustKycMark } from "./trustkyc-mark"
 
 const currencies = [
   { code: "USD", flag: <USAFlagIcon width={20} /> },
@@ -31,9 +32,9 @@ export function BalanceCard() {
     <div className="relative overflow-hidden rounded-[2rem] p-2 shadow-sm bg-card">
       <div className="flex items-start justify-between p-4">
         <div className="flex items-center gap-3">
-          <span className="flex size-9 items-center justify-center rounded-full bg-primary">
-            <PayflowMark className="size-4 text-secondary" />
-          </span>
+
+            <TrustKycMark variant="filled" className="size-6 text-primary" />
+
           <div>
             <p className="text-base font-semibold">Total Balance</p>
             <p className="text-sm text-balance-card-foreground/50">Available for use</p>

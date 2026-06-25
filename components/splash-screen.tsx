@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
-import { PayflowMark } from "@/components/payflow-mark"
+import { TrustKycAnimatedLogo } from "@/components/animated/logos/trustkyc-animated-v3"
 
 export function SplashScreen() {
   const [visible, setVisible] = useState(true)
@@ -32,9 +32,7 @@ export function SplashScreen() {
           // exit={{ y: "-100%" }}
           // transition={{ duration: 1, ease: "easeOut" }}
         >
-          <span className="flex size-16 shrink-0 items-center justify-center rounded-full bg-primary text-secondary">
-            <PayflowMark className="size-10" />
-          </span>
+          <TrustKycAnimatedLogo size={160} color="var(--foreground)" />
           <div className="h-1 w-32 overflow-hidden rounded-full bg-foreground/15">
             <div
               className="h-full rounded-full bg-foreground transition-[width] duration-2900 ease-linear"
