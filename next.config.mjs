@@ -7,7 +7,7 @@ const nextConfig = {
     unoptimized: true,
   },
   allowedDevOrigins: ['10.0.0.79'],
-  output : 'export'
+  // output : 'export'
 }
 
 export default nextConfig
