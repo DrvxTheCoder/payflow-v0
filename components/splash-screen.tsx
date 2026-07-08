@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { TrustKycAnimatedLogo } from "@/components/animated/logos/trustkyc-animated-v3"
+import { TrustKycMark } from "./trustkyc-mark"
 
 export function SplashScreen() {
   const [visible, setVisible] = useState(true)
@@ -32,7 +33,8 @@ export function SplashScreen() {
           // exit={{ y: "-100%" }}
           // transition={{ duration: 1, ease: "easeOut" }}
         >
-          <TrustKycAnimatedLogo size={160} color="var(--foreground)" />
+          {/* <TrustKycAnimatedLogo size={160} color="var(--foreground)" /> */}
+          <TrustKycMark className="size-10" />
           <div className="h-1 w-32 overflow-hidden rounded-full bg-foreground/15">
             <div
               className="h-full rounded-full bg-foreground transition-[width] duration-2900 ease-linear"

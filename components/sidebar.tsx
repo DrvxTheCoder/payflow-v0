@@ -138,8 +138,8 @@ export function Sidebar({
           <div className="flex items-center gap-2 overflow-hidden">
             <TrustKycMark variant="filled" className="size-10" />
             {!collapsed && (
-              <span className="text-lg font-semibold tracking-tight">
-                TrustKYC<small className="text-xs align-super">™</small>
+              <span className="text-lg font-bold tracking-tight">
+                payflow<small className="text-xs align-super">™</small>
               </span>
             )}
           </div>

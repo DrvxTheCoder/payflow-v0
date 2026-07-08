@@ -11,7 +11,7 @@ export function GlobeDemo() {
           Learn more
           <ArrowUpRight className="size-4" />
         </Button>
-        <span className="w-full pointer-events-none bg-linear-to-b from-black to-gray-300/80 bg-clip-text text-center text-2xl md:text-3xl leading-none font-extrabold whitespace-pre-wrap text-transparent dark:from-white dark:to-slate-900/10">
+        <span className="w-full pointer-events-none bg-linear-to-b from-black to-gray-300/80 bg-clip-text text-center text-xl md:text-2xl leading-none font-extrabold whitespace-pre-wrap text-transparent dark:from-white dark:to-slate-900/10">
           {"Payflow is now global."}
         </span>
       {/* <div className="flex flex-row justify-items-center gap-0 transition-all ease-in-out">
@@ -36,7 +36,7 @@ export function GlobeDemoContrast() {
         </Button>
         <span className="w-full pointer-events-none 
               text-black
-               text-center text-2xl md:text-3xl leading-none font-extrabold whitespace-pre-wrap ">
+               text-center text-xl md:text-2xl leading-none font-extrabold whitespace-pre-wrap ">
           {"Payflow is now global."}
         </span>
       {/* <div className="flex flex-row justify-items-center gap-0 transition-all ease-in-out">
@@ -98,7 +98,7 @@ function CountryTextLoop() {
 
 function CountryTextLoopContrast() {
   return (
-    <span className='flex flex-row justify-items-center whitespace-pre-wrap text-base md:text-lg font-medium text-white'>
+    <span className='flex flex-row justify-items-center whitespace-pre-wrap text-base font-medium text-white'>
       Send & receive money from{' '}
       <TextLoop
         className='overflow-y-clip text-black font-extrabold'

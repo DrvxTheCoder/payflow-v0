@@ -71,8 +71,8 @@ export function ExchangeCard() {
   }, [amountFrom, from, to])
 
   return (
-    <div className="rounded-[2rem] bg-card p-8 shadow-sm">
-      <div className="flex items-center justify-between">
+    <div className="rounded-[2rem] bg-card p-4 shadow-sm">
+      <div className="flex items-center justify-between px-4">
         <h3 className="text-base font-semibold">Exchange</h3>
         <Button variant="outline" size="icon-sm" className="flex size-7 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-secondary">
           <MoreHorizontal className="size-4" />
@@ -127,9 +127,9 @@ export function ExchangeCard() {
         </Button>
       </div>
 
-      <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground">
+      <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground px-4">
         <span>1.00 {from.code} = {getRate(from.code, to.code).toFixed(2)} {to.code}</span>
-        <span>Exchange Fee: $12.44</span>
+        <span>Fee: $12.44</span>
       </div>
 
       <Button className="mt-4 w-full rounded-full bg-primary p-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">

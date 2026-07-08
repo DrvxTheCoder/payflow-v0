@@ -18,6 +18,7 @@ import { UKFlagIcon } from "@/components/country-flag-icons/uk"
 import { EuroFlagIcon } from "@/components/country-flag-icons/euro"
 import { AnimatedNumber } from "./motion-primitives/animated-number"
 import { TrustKycMark } from "./trustkyc-mark"
+import AddCardDialog from "./add-card-dialog"
 
 const currencies = [
   { code: "USD", flag: <USAFlagIcon width={20} /> },
@@ -30,18 +31,19 @@ export function BalanceCard() {
 
   return (
     <div className="relative overflow-hidden rounded-[2rem] p-2 shadow-sm bg-card">
-      <div className="flex items-start justify-between p-4">
+      <div className="flex items-center justify-between p-4">
         <div className="flex items-center gap-3">
 
-            <TrustKycMark variant="filled" className="size-6 text-primary" />
+            {/* <TrustKycMark variant="filled" className="size-6 text-primary" /> */}
 
           <div>
-            <p className="text-base font-semibold">Total Balance</p>
-            <p className="text-sm text-balance-card-foreground/50">Available for use</p>
+            <p className="text-lg font-bold">Total Balance</p>
           </div>
         </div>
 
-        <DropdownMenu>
+        <AddCardDialog />
+
+        {/* <DropdownMenu>
           <DropdownMenuTrigger
             render={
               <button className="flex items-center gap-2 rounded-full bg-balance-card-foreground/10 px-3 py-2 text-sm font-medium outline-none transition-colors hover:bg-balance-card-foreground/15">
@@ -63,7 +65,7 @@ export function BalanceCard() {
               ))}
             </DropdownMenuGroup>
           </DropdownMenuContent>
-        </DropdownMenu>
+        </DropdownMenu> */}
       </div>
 
       {/* Inner white card */}
