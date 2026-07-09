@@ -541,7 +541,7 @@ export function AddCardDialog({
         }
       />
 
-      <DialogContent className="sm:max-w-3xl pt-6  h-fit md:min-h-[32rem] md:max-h-[32rem] rounded-3xl overflow-clip">
+      <DialogContent className="sm:max-w-3xl pt-6 h-fit max-h-[40rem] md:min-h-[32rem] md:max-h-[32rem] rounded-3xl overflow-clip">
         <DialogHeader className={cn(phase !== "form" && "sr-only", "gap-0 px-4")}>
           <DialogTitle className="text-lg font-semibold">
             Add a new card
@@ -553,7 +553,7 @@ export function AddCardDialog({
         <div
           className={cn(
             // `relative` anchors the popped-out exiting form (popLayout)
-            "relative grid items-center gap-8 p-2 md:py-6 md:px-8 rounded-xl",
+            "relative grid items-center gap-4 p-2 md:py-6 md:px-8 rounded-xl",
             phase === "form"
               ? "md:grid-cols-2 md:border md:border-muted"
               : "grid-cols-1 justify-items-center",
@@ -570,7 +570,10 @@ export function AddCardDialog({
             className="flex w-full max-w-sm flex-col items-center gap-6"
           >
             <div
-              className="w-full"
+              className={cn(
+                "w-full",
+                phase !== "form" && "mt-6",
+              )}
               style={{ perspective: 1200 }}
               aria-hidden="true"
             >
@@ -631,8 +634,8 @@ export function AddCardDialog({
                   >
                     <AnimatedCheck />
                     <div className="w-full">
-                      <p className="font-semibold text-lg">Card added</p>
-                      <p className="text-sm text-muted-foreground w-full">
+                      <p className="font-semibold text-lg">Card linked successfully.</p>
+                      <p className="hidden md:block text-sm text-muted-foreground w-full">
                         Your card has successfully been linked to your account.
                       </p>
                     </div>
