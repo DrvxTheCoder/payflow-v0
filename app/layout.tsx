@@ -1,23 +1,31 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono, Inter, Google_Sans } from 'next/font/google'
+// import { Geist, Geist_Mono, Inter, } from 'next/font/google'
+import { Google_Sans, Special_Gothic_Expanded_One } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { SplashScreen } from '@/components/splash-screen'
 import './globals.css'
 
 
-const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-})
+// const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
+// const geistMono = Geist_Mono({
+//   variable: '--font-geist-mono',
+//   subsets: ['latin'],
+// })
 
-const inter = Inter({ subsets: ['latin'] })
-const google_sans = Google_Sans({
+// const inter = Inter({ subsets: ['latin'] })
+const googleSans = Google_Sans({
   subsets: ['latin'],
-  fallback: ['system-ui', 'arial'],
-})
+  variable: '--font-google-sans',
+  display: 'swap',
+});
+const specialGothic = Special_Gothic_Expanded_One({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-special-gothic',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Payflow — Dashboard',
@@ -57,7 +65,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${google_sans.className} bg-background`}
+      className={`${googleSans.variable} ${specialGothic.variable} bg-background`}
       // className={`${geistSans.variable} ${geistMono.variable} bg-background`}
       suppressHydrationWarning
     >

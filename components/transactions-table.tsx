@@ -68,7 +68,7 @@ export function TransactionsTable() {
     <div className="flex h-fit flex-col rounded-[2rem] bg-card p-6 shadow-sm">
       <div className="flex items-start justify-between">
         <div>
-          <h2 className="text-xl font-semibold">Transactions</h2>
+          <h2 className="text-lg font-heading font-extrabold">Transactions</h2>
           <p className="text-sm text-muted-foreground">
             You can view your transaction history
           </p>

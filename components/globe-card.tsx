@@ -32,11 +32,11 @@ export function GlobeDemoContrast() {
     <div className="bg-[#ebbd57] relative flex flex-col size-full w-full items-center justify-center overflow-hidden rounded-2xl border px-2 pt-10 md:pt-15 pb-40 md:pb-60">
         <Button className="absolute inline-flex z-10 right-5 top-45 rounded-full bg-black text-white hover:bg-neutral-800">
           Learn more
-          <ArrowUpRight className="size-4" />
+          <ArrowUpRight className="size-4" / >
         </Button>
         <span className="w-full pointer-events-none 
               text-black
-               text-center text-xl md:text-2xl leading-none font-extrabold whitespace-pre-wrap ">
+               text-center text-xl md:text-2xl leading-none font-heading font-semibold whitespace-pre-wrap tracking-wider">
           {"Payflow is now global."}
         </span>
       {/* <div className="flex flex-row justify-items-center gap-0 transition-all ease-in-out">

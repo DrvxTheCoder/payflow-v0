@@ -37,7 +37,7 @@ export function BalanceCard() {
             {/* <TrustKycMark variant="filled" className="size-6 text-primary" /> */}
 
           <div>
-            <p className="text-lg font-bold">Total Balance</p>
+            <p className="text-lg font-heading font-extrabold">Total Balance</p>
           </div>
         </div>
 
