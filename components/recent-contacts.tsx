@@ -46,11 +46,6 @@ export function RecentContacts() {
           </button>
         </div>
       </div>
-
-      <button className="flex items-center justify-center gap-2 rounded-3xl border border-dashed border-foreground/20 py-4 text-sm font-medium text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground">
-        <HugeiconsIcon icon={DashboardSquareAddIcon} className="size-4" />
-        Add or Manage widgets
-      </button>
     </div>
   )
 }

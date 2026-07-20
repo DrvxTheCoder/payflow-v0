@@ -47,7 +47,7 @@ const tabs = [
     label: "Expenses",
     amount: "$72,421",
     decimals: ".84",
-    badge: "-8% vs Prev year",
+    badge: "-8% under last year",
     positive: false,
     data: expensesData,
     color: "var(--chart-1)",
@@ -57,7 +57,7 @@ const tabs = [
     label: "Income",
     amount: "$98,248",
     decimals: ".44",
-    badge: "+14% vs Prev year",
+    badge: "+14% over last year",
     positive: true,
     data: incomeData,
     color: "var(--chart-3)",
@@ -69,7 +69,7 @@ export function AnalyticsPanel() {
   const tab = tabs.find((t) => t.value === activeTab)!
 
   return (
-    <div className="rounded-3xl bg-card p-8 pt-4 shadow-sm">
+    <div className="rounded-3xl bg-card p-8 pt-4 shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5">
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <div className="flex items-center justify-between mb-5">
           <TabsList>
@@ -104,10 +104,10 @@ export function AnalyticsPanel() {
               </p>
               <span
                 className={cn(
-                  "rounded-md px-1.5 py-0.5 text-xs font-medium",
+                  "rounded-md px-2 py-1 text-xs font-medium",
                   tab.positive
-                    ? "bg-success-muted text-success-muted-foreground"
-                    : "bg-destructive-muted text-destructive-muted-foreground",
+                    ? "bg-green-100 dark:bg-green-500/5 text-success"
+                    : "bg-red-100 dark:bg-red-500/5 text-destructive",
                 )}
               >
                 {tab.badge}

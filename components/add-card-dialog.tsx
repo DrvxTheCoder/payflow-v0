@@ -33,6 +33,7 @@ import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { CreditCardAddIcon } from "@hugeicons/core-free-icons"
+import { Progress } from "@/components/ui/progress"
 
 /* ------------------------------------------------------------------ */
 /* Card network detection (BIN prefix only — template mode)             */
@@ -366,6 +367,7 @@ export function AddCardDialog({
   const [open, setOpen] = useState(false)
   const [phase, setPhase] = useState<Phase>("form")
   const [isFlipped, setIsFlipped] = useState(false)
+  const [progress, setProgress] = useState(0)
 
   const [name, setName] = useState("")
   const [number, setNumber] = useState("") // formatted, with spaces
@@ -471,6 +473,7 @@ export function AddCardDialog({
   const reset = useCallback(() => {
     setPhase("form")
     setIsFlipped(false)
+    setProgress(0)
     setName("")
     setNumber("")
     setExpMonth("")
@@ -489,8 +492,22 @@ export function AddCardDialog({
   // Auto-close the dialog 5s after the success state is shown
   useEffect(() => {
     if (phase !== "success") return
-    const timer = setTimeout(() => handleOpenChange(false), 5000)
-    return () => clearTimeout(timer)
+
+    setProgress(100)
+    const start = Date.now()
+    const duration = 5000
+    const interval = window.setInterval(() => {
+      const elapsed = Date.now() - start
+      const next = Math.max(0, 100 - (elapsed / duration) * 100)
+      setProgress(next)
+
+      if (elapsed >= duration) {
+        window.clearInterval(interval)
+        handleOpenChange(false)
+      }
+    }, 16)
+
+    return () => window.clearInterval(interval)
   }, [phase])
 
   const validateAll = (): boolean => {
@@ -534,14 +551,20 @@ export function AddCardDialog({
       <DialogTrigger
         render={
           trigger ?? (
-            <Button variant="outline" size="icon" className="flex items-center rounded-full">
-              <HugeiconsIcon icon={CreditCardAddIcon} className="size-4" />
+            <Button size="icon" className="flex items-center rounded-full bg-sidebar border border-white/20 hover:bg-white/10 active:bg-white/20">
+              <HugeiconsIcon icon={CreditCardAddIcon} className="size-5 text-white/80" />
             </Button>
           )
         }
       />
 
-      <DialogContent className="sm:max-w-3xl pt-6 h-fit max-h-[40rem] md:min-h-[32rem] md:max-h-[32rem] rounded-3xl overflow-clip">
+      <DialogContent className="sm:max-w-3xl pt-6 h-fit max-h-160 md:min-h-128 md:max-h-128 rounded-3xl overflow-clip bg-linear-to-b from-sidebar-foreground/8 to-sidebar-foreground/2 shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5">
+        
+          <div className="absolute inset-x-0 top-0 z-10 transition-colors duration-300 ease-in-out">
+            {phase === "success" && (
+            <Progress value={progress} className="h-1 rounded-none text-[#ebbd57] bg-[#ebbd57]" />
+            )}
+          </div>
         <DialogHeader className={cn(phase !== "form" && "sr-only", "gap-0 px-4")}>
           <DialogTitle className="text-lg font-semibold">
             Add a new card
@@ -553,9 +576,9 @@ export function AddCardDialog({
         <div
           className={cn(
             // `relative` anchors the popped-out exiting form (popLayout)
-            "relative grid items-center gap-4 p-2 md:py-6 md:px-8 rounded-xl",
+            "relative grid items-center gap-4 p-2 md:py-6 md:px-8 rounded-xl bg-muted/50 ",
             phase === "form"
-              ? "md:grid-cols-2 md:border md:border-muted"
+              ? "md:grid-cols-2 md:border md:border-muted dark:bg-black/15"
               : "grid-cols-1 justify-items-center",
           )}
         >

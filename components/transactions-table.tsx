@@ -65,7 +65,7 @@ export function TransactionsTable() {
   )
 
   return (
-    <div className="flex h-fit flex-col rounded-[2rem] bg-card p-6 shadow-sm">
+    <div className="flex h-fit flex-col rounded-[2rem] bg-card p-6 shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5">
       <div className="flex items-start justify-between">
         <div>
           <h2 className="text-lg font-heading font-extrabold">Transactions</h2>

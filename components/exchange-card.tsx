@@ -71,7 +71,7 @@ export function ExchangeCard() {
   }, [amountFrom, from, to])
 
   return (
-    <div className="rounded-[2rem] bg-card p-4 shadow-sm">
+    <div className="rounded-[2rem] bg-card p-4 shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5">
       <div className="flex items-center justify-between px-4">
         <h3 className="text-base font-semibold">Exchange</h3>
         <Button variant="outline" size="icon-sm" className="flex size-7 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-secondary">
