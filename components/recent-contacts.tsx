@@ -1,4 +1,8 @@
 import { ChevronRight, Plus, Pencil, LayoutGrid, CirclePlus, UserRoundPen } from "lucide-react"
+import {
+  AvatarGroup,
+  AvatarGroupTooltip,
+} from '@/components/animate-ui/components/animate/avatar-group';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { recentContacts } from "@/lib/data"
 import { DashboardSquareAddIcon, AddCircleHalfDotIcon, UserStoryIcon } from "@hugeicons/core-free-icons"
@@ -6,8 +10,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 
 export function RecentContacts() {
   return (
-    <div className="flex flex-col gap-4">
-      <div className="rounded-[2rem] bg-card p-5 shadow-sm">
+      <div className="rounded-3xl flex flex-col justify-between bg-card p-5 shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5">
         <div className="flex items-start justify-between">
           <div>
             <h2 className="text-lg font-semibold">Recent Contacts</h2>
@@ -23,17 +26,18 @@ export function RecentContacts() {
           </button>
         </div>
 
-        <div className="mt-5 flex flex-wrap gap-2">
+        <AvatarGroup className="mt-5 flex flex-wrap gap-2">
           {recentContacts.map((c) => (
             <Avatar
               key={c.name}
-              className="size-12 ring-2 ring-card"
+              className="size-12 ring-2 ring-card "
             >
               <AvatarImage src={c.avatar || "/placeholder.svg"} alt={c.name} />
               <AvatarFallback>{c.name[0]}</AvatarFallback>
+              <AvatarGroupTooltip>{c.name}</AvatarGroupTooltip>
             </Avatar>
           ))}
-        </div>
+        </AvatarGroup>
 
         <div className="mt-5 flex gap-3">
           <button className="flex flex-1 items-center justify-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
@@ -46,6 +50,5 @@ export function RecentContacts() {
           </button>
         </div>
       </div>
-    </div>
   )
 }

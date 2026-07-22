@@ -108,7 +108,7 @@ function HoverFeatureCard({
         transition={{ type: "spring", stiffness: 200, damping: 15 }}
         className="overflow-hidden z-1 w-11/12 self-center"
       >
-        <div className="py-3 px-5 relative border-t-0 rounded-b-3xl border">
+        <div className="py-1 px-8 relative border-t-0 rounded-b-3xl border">
           <div className="pointer-events-none w-[103%] bg-gradient-to-b from-background to-transparent h-12 absolute -top-1 -left-1" />
           <p className="text-sm font-base text-primary">
             {item.description}

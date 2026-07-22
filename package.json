@@ -29,6 +29,7 @@
     "cobe": "^0.6.5",
     "d3-array": "^3.2.4",
     "framer-motion": "^12.40.0",
+    "gridstack": "^13.0.0",
     "lucide-react": "^1.16.0",
     "motion": "^12.40.0",
     "next": "16.2.9",

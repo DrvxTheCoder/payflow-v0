@@ -146,7 +146,7 @@ export function Sidebar({
           {!collapsed && (
             <button
               onClick={onToggle}
-              className="rounded-full p-2 text-sidebar-foreground/60 transition-colors hover:bg-sidebar-foreground/10 hover:text-sidebar-foreground"
+              className="rounded-full p-2 text-sidebar-foreground/60 transition-colors hover:bg-sidebar-foreground/10 hover:text-sidebar-foreground cursor-pointer"
               aria-label="Collapse sidebar"
             >
               <HugeiconsIcon icon={Menu09Icon} className="size-5" />
@@ -158,7 +158,7 @@ export function Sidebar({
         <nav 
           onMouseLeave={() => setHoveredItem(null)}
           className={cn(
-            "mt-5 flex flex-col gap-1 min-w-fit px-2",
+            "mt-5 flex flex-col gap-1 min-w-fit px-2 cursor-pointer",
             collapsed && "pl-2"
           )}
         >

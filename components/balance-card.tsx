@@ -30,61 +30,37 @@ export function BalanceCard() {
   const [currency, setCurrency] = useState(currencies[0])
 
   return (
-    <div className="relative overflow-hidden rounded-[2rem] p-2 bg-sidebar shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5">
-      <div className="flex items-center justify-between p-4">
+    <div className="flex flex-col justify-between items-center rounded-[2rem] p-2 bg-sidebar shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5">
+      <div className="flex items-center justify-between p-4 pb-0 w-full">
         <div className="flex items-center gap-3">
-
-            {/* <TrustKycMark variant="filled" className="size-6 text-white" /> */}
-
+          {/* <TrustKycMark variant="filled" className="size-6 text-white" /> */}
           <div>
             <p className="text-lg font-heading font-extrabold text-white">Total Balance</p>
           </div>
         </div>
-
         <AddCardDialog />
-
-        {/* <DropdownMenu>
-          <DropdownMenuTrigger
-            render={
-              <button className="flex items-center gap-2 rounded-full bg-balance-card-foreground/10 px-3 py-2 text-sm font-medium outline-none transition-colors hover:bg-balance-card-foreground/15">
-                {currency.flag}
-                {currency.code}
-                <ChevronDown className="size-4 text-balance-card-foreground/60" />
-              </button>
-            }
-          />
-          <DropdownMenuContent align="end">
-            <DropdownMenuGroup>
-              {currencies.map((c) => (
-                <DropdownMenuItem key={c.code} onClick={() => setCurrency(c)}>
-                  <div aria-hidden="true" className="flex items-center justify-center p-0 size-3 overflow-hidden">
-                    {c.flag}
-                  </div>
-                  {c.code}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuGroup>
-          </DropdownMenuContent>
-        </DropdownMenu> */}
       </div>
 
       {/* Inner white card */}
-      <div className="rounded-[1.75rem] bg-card dark:bg-muted p-5 text-card-foreground">
-        <p className="text-sm text-muted-foreground">Available Funds</p>
-        <p className="mt-1 text-4xl font-semibold tracking-tight tabular-nums">
-          $18,248.44
-        </p>
+      <div className="flex flex-col justify-between gap-4 rounded-[1.75rem] bg-card dark:bg-muted p-6 pt-4 text-card-foreground h-fit w-full">
+        <div className="w-full">
+          <p className="text-sm text-muted-foreground">Available Funds</p>
+          <p className="mt-1 text-4xl font-semibold tracking-tight tabular-nums">
+            $18,248.44
+          </p>
+        </div>
 
-        <div className="w-full flex flex-row gap-0 pt-4 justify-center">
+
+        <div className="w-full flex flex-row gap-0 justify-center">
           <Button
-            className="bg-card hover:bg-secondary text-primary flex flex-row items-center justify-between rounded-none rounded-l-xl border border-muted-foreground/10 text-sm font-medium transition-colors">
+            className="py-6 bg-card hover:bg-secondary text-primary flex flex-row items-center justify-between rounded-none rounded-l-full border border-muted-foreground/10 text-sm font-medium transition-colors">
               <HugeiconsIcon icon={CircleArrowUpRightIcon} className="size-6 text-muted-foreground/50" />
               Send
               <span />
           </Button> 
 
           <Button
-            className="bg-card hover:bg-secondary text-primary flex flex-row items-center justify-between rounded-none rounded-r-xl border border-muted-foreground/10 border-l-0 text-sm font-medium transition-colors"
+            className="py-6 bg-card hover:bg-secondary text-primary flex flex-row items-center justify-between rounded-none rounded-r-full border border-muted-foreground/10 border-l-0 text-sm font-medium transition-colors"
           >
             <HugeiconsIcon icon={CircleArrowDownLeftIcon} className="size-6 text-muted-foreground/50" />
             Request
