@@ -14,6 +14,8 @@ import { DashboardSquareAddIcon } from "@hugeicons/core-free-icons"
 
 import { GridStack } from "gridstack"
 import "gridstack/dist/gridstack.min.css"
+import { FeaturedCardSlider } from "./featured-card-slider"
+import { GlobeDemo, GlobeDemoContrast } from "./globe-card"
 
 const MOBILE_QUERY = "(max-width: 1024px)"
 const COOKIE_NAME = "sidebar-collapsed"
@@ -244,22 +246,39 @@ export function DashboardShell() {
               {/* Hover Feature Card */}
               <div
                 className="grid-stack-item"
-                gs-w="3" gs-h="8"
-                gs-min-w="3" gs-min-h="6"
+                gs-w="3" gs-h="7"
+                gs-min-w="3" gs-min-h="7"
                 gs-x="9" gs-y="6"
               >
                 <div className="grid-stack-item-content">
-                  <HoverFeatureCard
+                  {/* <HoverFeatureCard
                     item={{ 
-                      name: "Tip of the day", 
-                      description: "Press Ctrl + F to quickly search for anything in Payflow.",
-                      img: "https://ui.unlumen.com/blocks.png", 
-                      imgLight: "https://ui.unlumen.com/blocks-light.png",
-                      imgClassName: "h-auto absolute -bottom-10 left-1/2 -translate-x-1/2 w-80",
+                      name: "Widget Mode is here! ", 
+                      description: "Click the widget icon in the top right corner to drag and arrange widgets to your liking.",
+                      img: "/demos/widget-mode-demo.webp", 
+                      // imgLight: "https://ui.unlumen.com/blocks-light.png",
+                      imgClassName: "h-auto absolute -bottom-20 left-1/2 -translate-x-1/2 w-80 rounded-lg",
                       fadeBottom: true,
-                      containerClassName: "rounded-3xl bg-gradient-to-b from-[#ebbd57]/70 to-[#ebbd57] dark:from-[#ebbd57]/80 dark:to-[#ebbd57]/20",
+                      containerClassName: "rounded-3xl bg-gradient-to-b from-[#ebbd57]/70 to-[#ebbd57] dark:from-[#ebbd57] dark:to-[#ebbd57]/80",
                     }} 
-                  />
+                  /> */}
+
+                  <FeaturedCardSlider
+                      slides={[
+                        <GlobeDemoContrast key="two" />,
+                        <HoverFeatureCard key="one"                     item={{ 
+                          name: "Widget Mode now available !", 
+                          description: "Click the widget icon in the top right corner to drag and arrange widgets to your liking.",
+                          img: "/demos/widget-mode-demo.webp", 
+                          // imgLight: "https://ui.unlumen.com/blocks-light.png",
+                          imgClassName: "h-auto absolute -bottom-15 left-1/2 -translate-x-1/2 w-80 rounded-lg",
+                          fadeBottom: true,
+                          containerClassName: "bg-[#ebbd57]",
+                        }}  />,
+                        
+                      ]}
+                      showDots={false}
+                    />
                 </div>
               </div>
 
@@ -272,7 +291,7 @@ export function DashboardShell() {
                 gs-no-drag="false" gs-no-resize="true"
               >
                 <div className="grid-stack-item-content">
-                  <button className="cursor-pointer flex w-full h-full items-center justify-center gap-2 rounded-3xl border border-dashed border-foreground/20 py-3 text-sm font-medium text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground">
+                  <button className="cursor-pointer flex w-full h-full items-center justify-center gap-2 rounded-3xl border-2 border-dashed border-foreground/10 py-3 text-sm font-medium text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground">
                     <HugeiconsIcon icon={DashboardSquareAddIcon} className="size-4" />
                     Add or Manage widgets
                   </button>

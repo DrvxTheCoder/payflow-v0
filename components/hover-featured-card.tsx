@@ -49,7 +49,7 @@ function HoverFeatureCard({
     >
       <div
         className={cn(
-          "flex flex-col rounded-3xl border h-64 z-5 bg-surface transition-colors w-full p-0",
+          "flex flex-col border h-68 z-5 bg-surface transition-colors w-full p-0",
           !item.soon && item.href ? "hover:border-border/80" : "",
           item.soon ? "border-dashed border-border" : "border-border",
         )}
@@ -68,8 +68,8 @@ function HoverFeatureCard({
         >
           <span
             className={cn(
-              "font-medium text-xl tracking-tight",
-              item.soon ? "text-muted-foreground/80" : "text-white",
+              "w-full flex justify-center font-black text-xl tracking-tight",
+              item.soon ? "text-black/80" : "text-black",
             )}
           >
             {item.name}
@@ -95,12 +95,12 @@ function HoverFeatureCard({
           )}
 
           {item.fadeBottom && (
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-22 bg-gradient-to-t from-surface to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-22 bg-linear-to-t from-surface to-transparent" />
           )}
         </div>
       </div>
 
-      <motion.div
+      {/* <motion.div
         variants={{
           rest: { opacity: 0.2, y: -30 },
           hover: { opacity: 1, y: 0 },
@@ -108,13 +108,13 @@ function HoverFeatureCard({
         transition={{ type: "spring", stiffness: 200, damping: 15 }}
         className="overflow-hidden z-1 w-11/12 self-center"
       >
-        <div className="py-1 px-8 relative border-t-0 rounded-b-3xl border">
-          <div className="pointer-events-none w-[103%] bg-gradient-to-b from-background to-transparent h-12 absolute -top-1 -left-1" />
+        <div className="py-2 px-8 relative border-t-0 rounded-b-3xl border">
+          <div className="pointer-events-none w-[103%] bg-linear-to-b from-background to-transparent h-12 absolute -top-1 -left-1" />
           <p className="text-sm font-base text-primary">
             {item.description}
           </p>
         </div>
-      </motion.div>
+      </motion.div> */}
     </motion.div>
   );
 

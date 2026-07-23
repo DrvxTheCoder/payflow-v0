@@ -29,7 +29,7 @@ export function GlobeDemo() {
 
 export function GlobeDemoContrast() {
   return (
-    <div className="bg-[#ebbd57] relative flex flex-col size-full w-full items-center justify-center overflow-hidden rounded-2xl px-2 pt-10 md:pt-15 pb-40 md:pb-60 shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5">
+    <div className="bg-[#ebbd57] relative flex flex-col size-full w-full items-center justify-center overflow-hidden px-2 pt-10 md:pt-15 pb-40 md:pb-60 shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5">
         <Button className="absolute inline-flex z-10 right-5 top-45 rounded-full bg-black text-white hover:bg-neutral-800">
           Learn more
           <ArrowUpRight className="size-4" / >

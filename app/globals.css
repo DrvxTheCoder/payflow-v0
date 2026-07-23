@@ -225,10 +225,10 @@
   border-radius: 1.9rem !important;
 
   /* Mix foreground color with transparent to create an subtle opacity fill with OKLCH */
-  background-color: color-mix(in oklch, var(--foreground) 10%, transparent) !important;
+  background-color: color-mix(in oklch, var(--foreground) 5%, transparent) !important;
 
   /* Subtle dashed border matching theme text */
-  border: 2px dashed color-mix(in oklch, var(--foreground) 25%, transparent) !important;
+  border: 2px dashed color-mix(in oklab, var(--foreground) 10%, transparent) !important;
 
   /* Smooth snap animation */
   transition: all 0.15s ease-in-out;
