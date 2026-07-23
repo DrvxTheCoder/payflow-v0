@@ -42,7 +42,7 @@ function FeatureTipCard({ item }: { item: FeatureTipCard }) {
           </div>
 
           {/* Subtitle description rendered inside the main flow */}
-          <div className="w-full text-center text-sm font-medium text-white/80 leading-snug">
+          <div className="w-full text-center text-xs md:text-sm font-medium text-white/80 leading-snug">
             {item.description}
           </div>
 
