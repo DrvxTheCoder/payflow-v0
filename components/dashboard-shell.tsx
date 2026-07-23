@@ -8,9 +8,9 @@ import { RecentContacts } from "@/components/recent-contacts"
 import { TransactionsTable } from "@/components/transactions-table"
 import { AnalyticsPanel } from "@/components/analytics-panel"
 import { DialogPortalContainerProvider } from "@/components/ui/dialog"
-import { HoverFeatureCard } from "./hover-featured-card"
+import { FeatureTipCard } from "./feature-tip-card"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { DashboardSquareAddIcon } from "@hugeicons/core-free-icons"
+import { DashboardSquareAddIcon, DashboardSquareEditIcon } from "@hugeicons/core-free-icons"
 
 import { GridStack } from "gridstack"
 import "gridstack/dist/gridstack.min.css"
@@ -57,7 +57,7 @@ export function DashboardShell() {
       {
         column: isMobile ? 1 : 12,
         cellHeight: 40,
-        margin: 8,
+        margin: 6,
         float: false,
         animate: true,
         disableResize: true,
@@ -178,7 +178,7 @@ export function DashboardShell() {
 
         <main
           ref={dialogPortalContainerRef}
-          className="px-2 relative flex-1 max-lg:min-w-full overflow-y-auto rounded-3xl bg-background pb-5 md:pb-6 no-scrollbar"
+          className="px-2 rounded-3xl relative flex-1 max-lg:min-w-full overflow-y-auto bg-background pb-5 md:pb-6 no-scrollbar"
         >
           <DialogPortalContainerProvider container={dialogPortalContainerRef}>
             <Topbar
@@ -265,19 +265,21 @@ export function DashboardShell() {
 
                   <FeaturedCardSlider
                       slides={[
+                        <FeatureTipCard key="one" 
+                          item={{ 
+                            name: "Widget Mode now available !", 
+                            description: <p className="flex flex-row justify-center items-center">Click the <HugeiconsIcon icon={DashboardSquareEditIcon} className="size-3 text-black/80 mx-1" /> icon in the top right corner to try it out !</p>,
+                            mediaSrc: "/demos/widget-mode-demo.mp4", 
+                            mediaClassName: "h-auto w-80 absolute -bottom-15 left-1/2 -translate-x-1/2 rounded-lg border-3 border-black shadow-md",
+                            containerClassName: "bg-[#ebbd57]",
+                            fadeBottom: false
+                          }}  
+                        />,
                         <GlobeDemoContrast key="two" />,
-                        <HoverFeatureCard key="one"                     item={{ 
-                          name: "Widget Mode now available !", 
-                          description: "Click the widget icon in the top right corner to drag and arrange widgets to your liking.",
-                          img: "/demos/widget-mode-demo.webp", 
-                          // imgLight: "https://ui.unlumen.com/blocks-light.png",
-                          imgClassName: "h-auto absolute -bottom-15 left-1/2 -translate-x-1/2 w-80 rounded-lg",
-                          fadeBottom: true,
-                          containerClassName: "bg-[#ebbd57]",
-                        }}  />,
                         
                       ]}
                       showDots={false}
+                      showArrows={true}
                     />
                 </div>
               </div>
