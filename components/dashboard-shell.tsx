@@ -16,6 +16,7 @@ import { GridStack } from "gridstack"
 import "gridstack/dist/gridstack.min.css"
 import { FeaturedCardSlider } from "./featured-card-slider"
 import { GlobeDemo, GlobeDemoContrast } from "./globe-card"
+import { Button } from "./ui/button"
 
 const MOBILE_QUERY = "(max-width: 1024px)"
 const COOKIE_NAME = "sidebar-collapsed"
@@ -123,7 +124,7 @@ export function DashboardShell() {
   }
 
   return (
-    <div className="h-svh bg-sidebar py-3 p-3 md:pl-0">
+    <div className="h-svh bg-sidebar md:p-3 lg:pl-0">
       {/* Dynamic Styles for iOS Wobble, Dragging Cursors, and Interaction Locks */}
       <style jsx global>{`
         @keyframes ios-wobble-even {
@@ -178,7 +179,7 @@ export function DashboardShell() {
 
         <main
           ref={dialogPortalContainerRef}
-          className="px-2 rounded-3xl relative flex-1 max-lg:min-w-full overflow-y-auto bg-background pb-5 md:pb-6 no-scrollbar"
+          className="md:rounded-3xl relative flex-1 max-lg:min-w-full overflow-y-auto bg-background pb-5 md:pb-6 no-scrollbar"
         >
           <DialogPortalContainerProvider container={dialogPortalContainerRef}>
             <Topbar
@@ -190,7 +191,7 @@ export function DashboardShell() {
 
             <div
               ref={gridRef}
-              className={`grid-stack px-2 md:px-3 pt-3 ${isEditing ? "grid-stack-editing" : ""}`}
+              className={`mx-2 grid-stack px-2 md:px-3 pt-3 ${isEditing ? "grid-stack-editing" : ""}`}
             >
               {/* --- LEFT COLUMN --- */}
               {/* Balance Card */}
@@ -267,8 +268,17 @@ export function DashboardShell() {
                       slides={[
                         <FeatureTipCard key="one" 
                           item={{ 
-                            name: "Widget Mode now available !", 
-                            description: <p className="flex flex-row justify-center items-center">Click the <HugeiconsIcon icon={DashboardSquareEditIcon} className="size-3 text-black/80 mx-1" /> icon in the top right corner to try it out !</p>,
+                            // name: "Widget Mode now available !", 
+                            description: <>
+                                          <span className="flex flex-row justify-center items-center text-xs md:text-sm font-medium text-white">
+                                            Click the
+                                            <div className="flex justify-center items-center mx-1 rounded-full border border-white/50 bg-white/20 size-7">
+                                              <HugeiconsIcon icon={DashboardSquareEditIcon} className="size-3 text-white" />
+                                            </div> 
+                                            icon in the top right corner to try
+                                          </span> 
+                                          <b className="text-lg font-bold text-black">Widget Mode.</b>
+                                        </>,
                             mediaSrc: "/demos/widget-mode-demo.mp4", 
                             mediaClassName: "h-auto w-80 absolute -bottom-15 left-1/2 -translate-x-1/2 rounded-lg border-3 border-black shadow-md",
                             containerClassName: "bg-[#ebbd57]",

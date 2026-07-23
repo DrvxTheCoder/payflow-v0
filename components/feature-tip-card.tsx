@@ -5,8 +5,8 @@ import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 
 export interface FeatureTipCard {
-  name: React.ReactNode;
-  description: React.ReactNode;
+  name?: React.ReactNode;
+  description?: React.ReactNode;
   mediaSrc: string; // Path to .mp4, .webm, or .gif
   mediaClassName?: string;
   containerClassName?: string;
@@ -37,12 +37,12 @@ function FeatureTipCard({ item }: { item: FeatureTipCard }) {
       >
         <div className="relative w-full h-full px-5 pt-6 pb-4 flex flex-col">
           {/* Headline support for string or custom JSX */}
-          <div className="w-full flex justify-center font-black text-xl tracking-tight text-black text-center">
+          <div className="w-full pointer-events-none text-black text-center text-lg md:text-xl leading-none font-heading font-semibold whitespace-pre-wrap">
             {item.name}
           </div>
 
           {/* Subtitle description rendered inside the main flow */}
-          <div className="w-full text-center text-xs md:text-sm font-medium text-white/80 leading-snug">
+          <div className="w-full text-center text-xs md:text-base font-medium text-white leading-snug">
             {item.description}
           </div>
 
