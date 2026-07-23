@@ -266,7 +266,14 @@ export function DashboardShell() {
 
                   <FeaturedCardSlider
                       slides={[
-                        <FeatureTipCard key="one" 
+                        <FeatureTipCard key="one"
+                          item={{
+                            name: <p className="font-heading text-white text-shadow-muted md:tracking-wide text-lg">Pay from anywhere, anytime.</p>,
+                            mediaSrc: "/demos/card-hand-demo-2.png",
+                            mediaClassName: "w-full h-auto top-0 absolute -left-1"
+                          }}
+                        />,
+                        <FeatureTipCard key="two" 
                           item={{ 
                             // name: "Widget Mode now available !", 
                             description: <>
@@ -285,7 +292,7 @@ export function DashboardShell() {
                             fadeBottom: false
                           }}  
                         />,
-                        <GlobeDemoContrast key="two" />,
+                        <GlobeDemoContrast key="three" />,
                         
                       ]}
                       showDots={false}

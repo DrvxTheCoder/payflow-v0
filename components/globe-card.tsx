@@ -34,7 +34,7 @@ export function GlobeDemoContrast() {
           Learn more
           <ArrowUpRight className="size-4" />
         </Button>
-        <span className="w-full pointer-events-none text-black text-center text-lg md:text-xl leading-none font-heading font-semibold whitespace-pre-wrap tracking-tight">
+        <span className="w-full pointer-events-none text-black text-center text-lg md:text-xl leading-none font-heading font-semibold whitespace-pre-wrap md:tracking-wide">
           {"Payflow is now global."}
         </span>
       {/* <div className="flex flex-row justify-items-center gap-0 transition-all ease-in-out">

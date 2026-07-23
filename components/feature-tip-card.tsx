@@ -20,7 +20,7 @@ export interface FeatureTipCardsProps {
 
 function FeatureTipCard({ item }: { item: FeatureTipCard }) {
   // Check if file is a legacy GIF or modern video format
-  const isVideo = !item.mediaSrc.endsWith(".gif");
+  const isVideo = item.mediaSrc.endsWith(".mp4") ;
 
   return (
     <motion.div
