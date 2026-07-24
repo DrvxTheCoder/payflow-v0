@@ -70,7 +70,7 @@ export function TransactionsTable() {
         <div>
           <h2 className="text-lg font-heading font-extrabold">Transactions</h2>
           <p className="text-sm text-muted-foreground">
-            You can view your transaction history
+            Transaction history
           </p>
         </div>
         <div className="flex items-center gap-2">

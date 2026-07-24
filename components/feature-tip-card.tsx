@@ -27,7 +27,7 @@ function FeatureTipCard({ item }: { item: FeatureTipCard }) {
       initial="rest"
       whileHover="hover"
       animate="rest"
-      className="group flex flex-col w-full relative"
+      className="group flex flex-col size-full relative"
     >
       <div
         className={cn(
@@ -37,7 +37,7 @@ function FeatureTipCard({ item }: { item: FeatureTipCard }) {
       >
         <div className="relative w-full h-full px-5 pt-6 pb-4 flex flex-col">
           {/* Headline support for string or custom JSX */}
-          <div className="w-full pointer-events-none text-black text-center text-lg md:text-xl leading-none font-heading font-semibold whitespace-pre-wrap">
+          <div className="w-full pointer-events-none">
             {item.name}
           </div>
 

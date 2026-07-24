@@ -10,6 +10,8 @@ interface FeaturedCardSliderProps {
   slideClassName?: string;
   showArrows?: boolean;
   showDots?: boolean;
+  duration?: number;
+  autoplay?: boolean;
 }
 
 export function FeaturedCardSlider({
@@ -18,10 +20,27 @@ export function FeaturedCardSlider({
   slideClassName,
   showArrows = true,
   showDots = true,
+  duration = 5,
+  autoplay = false,
 }: FeaturedCardSliderProps) {
   const [activeIndex, setActiveIndex] = React.useState(0);
 
+  React.useEffect(() => {
+    if (!slides.length || slides.length <= 1 || !autoplay || duration <= 0) {
+      return;
+    }
+
+    const timer = window.setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % slides.length);
+    }, duration * 1000);
+
+    return () => window.clearInterval(timer);
+  }, [autoplay, duration, slides.length]);
+
   if (!slides.length) return null;
+
+  const isFirstSlide = activeIndex === 0;
+  const isLastSlide = activeIndex === slides.length - 1;
 
   const goToNext = () => {
     setActiveIndex((prev) => (prev + 1) % slides.length);
@@ -54,23 +73,27 @@ export function FeaturedCardSlider({
 
         {showArrows && slides.length > 1 && (
           <>
-            <button
-              type="button"
-              onClick={goToPrev}
-              aria-label="Previous slide"
-              className="absolute left-3 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-background/20 text-foreground shadow-sm transition hover:bg-background/50 cursor-pointer"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
+            {!isFirstSlide && (
+              <button
+                type="button"
+                onClick={goToPrev}
+                aria-label="Previous slide"
+                className="absolute left-3 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-background/20 text-foreground shadow-sm transition hover:bg-background/50 cursor-pointer"
+              >
+                <ChevronLeft className="h-4 w-4 text-white/80" />
+              </button>
+            )}
 
-            <button
-              type="button"
-              onClick={goToNext}
-              aria-label="Next slide"
-              className="absolute right-3 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-background/20 text-foreground shadow-sm transition hover:bg-background/50 cursor-pointer"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
+            {!isLastSlide && (
+              <button
+                type="button"
+                onClick={goToNext}
+                aria-label="Next slide"
+                className="absolute right-3 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-background/20 text-foreground shadow-sm transition hover:bg-background/50 cursor-pointer"
+              >
+                <ChevronRight className="h-4 w-4 text-white/80" />
+              </button>
+            )}
           </>
         )}
       </div>

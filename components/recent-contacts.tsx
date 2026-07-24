@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { recentContacts } from "@/lib/data"
 import { DashboardSquareAddIcon, AddCircleHalfDotIcon, UserStoryIcon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
+import { Button } from "./ui/button";
 
 export function RecentContacts() {
   return (
@@ -30,7 +31,7 @@ export function RecentContacts() {
           {recentContacts.map((c) => (
             <Avatar
               key={c.name}
-              className="size-12 ring-2 ring-card "
+              className="size-12 ring-2 ring-card cursor-pointer"
             >
               <AvatarImage src={c.avatar || "/placeholder.svg"} alt={c.name} />
               <AvatarFallback>{c.name[0]}</AvatarFallback>
@@ -40,14 +41,14 @@ export function RecentContacts() {
         </AvatarGroup>
 
         <div className="mt-5 flex gap-3">
-          <button className="flex flex-1 items-center justify-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
+          <Button className="flex flex-1 items-center justify-center gap-2 rounded-full bg-primary px-4 py-5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
             <HugeiconsIcon icon={AddCircleHalfDotIcon} className="size-4" />
             Add new
-          </button>
-          <button className="flex flex-1 items-center justify-center gap-2 rounded-full border border-border px-4 py-2.5 text-sm font-medium transition-colors hover:bg-secondary">
+          </Button>
+          <Button variant={"outline"} className="flex flex-1 items-center justify-center gap-2 rounded-full border border-border px-4 py-5 text-sm font-medium transition-colors hover:bg-secondary">
             <HugeiconsIcon icon={UserStoryIcon} className="size-4" />
             Manage
-          </button>
+          </Button>
         </div>
       </div>
   )

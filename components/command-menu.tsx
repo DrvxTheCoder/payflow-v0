@@ -34,20 +34,17 @@ export function CommandMenu() {
         <span className="text-muted-foreground text-sm hidden md:block">Search...</span>
         <Search className="text-muted-foreground size-5 md:hidden" />
         <div className="flex flex-row justify-items-center">
-            
             <span className=" flex items-center gap-1 rounded-full bg-card px-3 py-2 text-xs font-medium text-muted-foreground">
               <CommandIcon className="size-3" />F
             </span>
         </div>
-        
-
       </div>
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <Command>
+        <Command className="shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5">
           <CommandInput placeholder="Type a command or search..." />
           <CommandList>
             <CommandEmpty>No results found.</CommandEmpty>
-            <CommandGroup heading="Suggestions">
+            <CommandGroup heading="Suggestions" className="p-4">
               <CommandItem>
                 <CalendarIcon />
                 <span>Calendar</span>

@@ -139,7 +139,7 @@ const cvcError = (v: string) => {
 /* Brand logos (inlined from official marks)                            */
 /* ------------------------------------------------------------------ */
 
-function VisaLogo({ className }: { className?: string }) {
+export function VisaLogo({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 1000 324.68"

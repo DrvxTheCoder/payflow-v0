@@ -239,12 +239,20 @@ export const transactions: Transaction[] = [
   },
 ]
 
+// export const recentContacts = [
+//   { name: "Nadia", avatar: "/avatars/contact1.png" },
+//   { name: "Elena", avatar: "/avatars/contact2.png" },
+//   { name: "Mia", avatar: "/avatars/contact3.png" },
+//   { name: "Nataly", avatar: "/avatars/nataly.png" },
+//   { name: "Marcus", avatar: "/avatars/robert.png" },
+// ]
+
 export const recentContacts = [
-  { name: "Nadia", avatar: "/avatars/contact1.png" },
-  { name: "Elena", avatar: "/avatars/contact2.png" },
-  { name: "Mia", avatar: "/avatars/contact3.png" },
+  { name: "Kari", avatar: "/avatars/kari.png" },
   { name: "Nataly", avatar: "/avatars/nataly.png" },
-  { name: "Marcus", avatar: "/avatars/robert.png" },
+  { name: "Alec", avatar: "/avatars/alec.png" },
+  { name: "Kelly", avatar: "/avatars/kelly.png" },
+  { name: "Nadia", avatar: "/avatars/contact1.png" },
 ]
 
 export const expensesData = [
@@ -264,3 +272,31 @@ export const incomeData = [
   { month: "May", value: 8900 },
   { month: "Jun", value: 10200 },
 ]
+
+export const spendingData = [
+  {
+    "label": "Subscriptions",
+    "value": 10,
+    "color": "var(--chart-1)"
+  },
+  {
+    "label": "Transfers",
+    "value": 25,
+    "color": "var(--chart-2)"
+  },
+  {
+    "label": "Groceries",
+    "value": 15,
+    "color": "var(--chart-3)"
+  },
+  {
+    "label": "Bills",
+    "value": 33,
+    "color": "var(--chart-4)"
+  },
+  {
+    "label": "Payments",
+    "value": 17,
+    "color": "var(--chart-5)"
+  }
+];

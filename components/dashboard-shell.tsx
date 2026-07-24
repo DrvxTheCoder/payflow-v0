@@ -17,6 +17,11 @@ import "gridstack/dist/gridstack.min.css"
 import { FeaturedCardSlider } from "./featured-card-slider"
 import { GlobeDemo, GlobeDemoContrast } from "./globe-card"
 import { Button } from "./ui/button"
+import { ExchangeCard } from "./exchange-card"
+import { VisaLogo } from "./add-card-dialog"
+import { X, XIcon } from "lucide-react"
+import SpendingDataChart from "./spendingsCard"
+import { Separator } from "./ui/separator"
 
 const MOBILE_QUERY = "(max-width: 1024px)"
 const COOKIE_NAME = "sidebar-collapsed"
@@ -218,6 +223,30 @@ export function DashboardShell() {
                 </div>
               </div>
 
+              {/* Exchange Card
+              <div
+                className="grid-stack-item"
+                gs-w="3" gs-h="8"
+                gs-min-w="3" gs-min-h="8"
+                gs-x="0" gs-y="14"
+              >
+                <div className="grid-stack-item-content">
+                  <ExchangeCard />
+                </div>
+              </div> */}
+
+              {/* Spendings Chart */}
+              <div
+                className="grid-stack-item"
+                gs-w="2" gs-h="4"
+                gs-min-w="2" gs-min-h="4"
+                gs-x="0" gs-y="14"
+              >
+                <div className="grid-stack-item-content">
+                  <SpendingDataChart />
+                </div>
+              </div>
+
               {/* --- CENTER COLUMN --- */}
               {/* Transactions Table */}
               <div
@@ -265,12 +294,15 @@ export function DashboardShell() {
                   /> */}
 
                   <FeaturedCardSlider
+                      duration={10}
                       slides={[
                         <FeatureTipCard key="one"
                           item={{
-                            name: <p className="font-heading text-white text-shadow-muted md:tracking-wide text-lg">Pay from anywhere, anytime.</p>,
-                            mediaSrc: "/demos/card-hand-demo-2.png",
-                            mediaClassName: "w-full h-auto top-0 absolute -left-1"
+                            name: <span className="flex flex-row justify-center items-center gap-1"><p className="text-xl tracking-tight font-heading font-black text-black">payflow<small className="text-xs align-super">™</small></p> <Separator orientation="vertical" className="mx-2 border-l border-white" /> <VisaLogo className="h-6 w-auto" /></span>,
+                            description : <span className="text-xs md:text-sm font-medium text-white italic">Pay from anywhere, anytime.</span>,
+                            mediaSrc: "/demos/card-hand-demo.png",
+                            mediaClassName: "w-full h-auto absolute -left-1 -bottom-8 animate-reveal",
+                            fadeBottom: true,
                           }}
                         />,
                         <FeatureTipCard key="two" 
@@ -282,7 +314,7 @@ export function DashboardShell() {
                                             <div className="flex justify-center items-center mx-1 rounded-full border border-white/50 bg-white/20 size-7">
                                               <HugeiconsIcon icon={DashboardSquareEditIcon} className="size-3 text-white" />
                                             </div> 
-                                            icon in the top right corner to try
+                                            button in the top right corner to try
                                           </span> 
                                           <b className="text-lg font-bold text-black">Widget Mode.</b>
                                         </>,
