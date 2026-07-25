@@ -287,22 +287,15 @@ export const spendingData = [
     "percentage": 30,
   },
   {
-    "label": "Groceries",
-    "value": 35600,
+    "label": "Payments",
+    "value": 48502,
     "color": "var(--chart-3)",
-    "percentage": 18,
+    "percentage": 25,
   },
   {
     "label": "Bills",
     "value": 64510,
-    "color": "var(--chart-4)",
+    "color": "var(--chart-5)",
     "percentage": 33,
   },
-  {
-    "label": "Payments",
-    "value": 12902,
-    "color": "var(--chart-5)",
-    "percentage": 7,
-  }
 ];
-23490+57201+35600+64510+12902

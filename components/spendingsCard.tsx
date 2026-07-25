@@ -16,7 +16,7 @@ export default function SpendingDataChart() {
             <PieSlice index={4} hoverEffect="translate" />
             <PieCenter defaultLabel="Total" />
         </PieChart>
-        <div className="flex flex-col justify-start gap-1 items-center bg-muted p-4 px-3 w-full h-full rounded-2xl inset-shadow-xs">
+        <div className="flex flex-col justify-center gap-1 items-center bg-muted p-4 px-3 w-full h-full rounded-2xl inset-shadow-xs">
             {spendingData.map((expense, index) => (
                 <span
                 key={index}

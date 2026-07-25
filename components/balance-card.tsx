@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { PayflowMark } from "@/components/payflow-mark"
 import { HugeiconsIcon } from '@hugeicons/react'
-import { CircleArrowDownLeftIcon, CircleArrowUpRightIcon } from '@hugeicons/core-free-icons'
+import {  CircleArrowDownLeftIcon, CircleArrowUpRightIcon, CoinsDollarIcon } from '@hugeicons/core-free-icons'
 import { USAFlagIcon } from "@/components/country-flag-icons/usa"
 import { UKFlagIcon } from "@/components/country-flag-icons/uk"
 import { EuroFlagIcon } from "@/components/country-flag-icons/euro"
@@ -65,7 +65,7 @@ export function BalanceCard() {
           </Button>
         </div>
 
-        <p className="mt-1 text-4xl font-medium tracking-tight tabular-nums font-mono">
+        <p className="mt-1 text-4xl font-semibold tracking-tight tabular-nums font-mono">
           ${showBalance ? "18,248.44" : "********"}
         </p>
       </div>
@@ -74,6 +74,12 @@ export function BalanceCard() {
         <div className="w-full flex flex-row gap-0 justify-center">
           <Button
             className="py-6 bg-card hover:bg-secondary text-primary flex flex-row items-center justify-between rounded-none rounded-l-full border border-muted-foreground/10 text-sm font-medium transition-colors">
+              <HugeiconsIcon icon={CoinsDollarIcon} className="size-6 text-muted-foreground/50" />
+              Top Up
+              <span />
+          </Button> 
+          <Button
+            className="py-6 bg-card hover:bg-secondary text-primary flex flex-row items-center justify-between rounded-none border border-muted-foreground/10 text-sm font-medium transition-colors">
               <HugeiconsIcon icon={CircleArrowUpRightIcon} className="size-6 text-muted-foreground/50" />
               Send
               <span />
