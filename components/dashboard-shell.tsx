@@ -22,6 +22,7 @@ import { VisaLogo } from "./add-card-dialog"
 import { X, XIcon } from "lucide-react"
 import SpendingDataChart from "./spendingsCard"
 import { Separator } from "./ui/separator"
+import MonthlyLimitCard from "./monthly-limit-card"
 
 const MOBILE_QUERY = "(max-width: 1024px)"
 const COOKIE_NAME = "sidebar-collapsed"
@@ -246,12 +247,23 @@ export function DashboardShell() {
                   <SpendingDataChart />
                 </div>
               </div>
+              
+              <div
+                className="grid-stack-item"
+                gs-w="1" gs-h="4"
+                gs-min-w="1" gs-min-h="4"
+                gs-x="2" gs-y="14"
+              >
+                <div className="grid-stack-item-content">
+                  <MonthlyLimitCard />
+                </div>
+              </div>
 
               {/* --- CENTER COLUMN --- */}
               {/* Transactions Table */}
               <div
                 className="grid-stack-item"
-                gs-w="6" gs-h="20"
+                gs-w="6" gs-h="18"
                 gs-min-w="3" gs-min-h="14" gs-max-h="20"
                 gs-x="3" gs-y="0"
               >
@@ -264,8 +276,8 @@ export function DashboardShell() {
               {/* Recent Contacts */}
               <div
                 className="grid-stack-item"
-                gs-w="3" gs-h="6"
-                gs-min-w="3" gs-min-h="6"
+                gs-w="3" gs-h="7"
+                gs-min-w="3" gs-min-h="7"
                 gs-x="9" gs-y="0"
               >
                 <div className="grid-stack-item-content">
@@ -298,10 +310,10 @@ export function DashboardShell() {
                       slides={[
                         <FeatureTipCard key="one"
                           item={{
-                            name: <span className="flex flex-row justify-center items-center gap-1"><p className="text-xl tracking-tight font-heading font-black text-black">payflow<small className="text-xs align-super">™</small></p> <Separator orientation="vertical" className="mx-2 border-l border-white" /> <VisaLogo className="h-6 w-auto" /></span>,
-                            description : <span className="text-xs md:text-sm font-medium text-white italic">Pay from anywhere, anytime.</span>,
+                            name: <span className="flex flex-row justify-center items-center gap-1 mb-2"><p className="text-xl tracking-tight font-heading font-black text-black text-shadow-md">payflow<small className="text-xs align-super">™</small></p> <Separator orientation="vertical" className="mx-2 border-l border-white" /> <VisaLogo className="h-6 w-auto" /></span>,
+                            description : <small className="text-xs md:text-sm font-medium text-white italic text-shadow-md">Pay from anywhere, anytime.</small>,
                             mediaSrc: "/demos/card-hand-demo.png",
-                            mediaClassName: "w-full h-auto absolute -left-1 -bottom-8 animate-reveal",
+                            mediaClassName: "w-full md:w-1/2 lg:w-full h-auto absolute -left-1 md:left-50 lg:-left-1 -bottom-8 animate-reveal",
                             fadeBottom: true,
                           }}
                         />,
@@ -336,15 +348,15 @@ export function DashboardShell() {
               {/* Add Widget Button (Fixed non-draggable utility item) */}
               <div
                 className="grid-stack-item"
-                gs-w="3" gs-h="2"
-                gs-min-w="3" gs-min-h="2"
+                gs-w="1" gs-h="4"
+                gs-min-w="1" gs-min-h="2"
                 gs-x="9" gs-y="14"
                 gs-no-drag="false" gs-no-resize="true"
               >
                 <div className="grid-stack-item-content">
-                  <button className="cursor-pointer flex w-full h-full items-center justify-center gap-2 rounded-3xl border-2 border-dashed border-foreground/10 py-3 text-sm font-medium text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground">
-                    <HugeiconsIcon icon={DashboardSquareAddIcon} className="size-4" />
-                    Add or Manage widgets
+                  <button className="cursor-pointer flex flex-col w-full h-full items-center justify-center gap-2 rounded-3xl border-2 border-dashed border-foreground/10 py-3 text-sm font-medium text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground">
+                    <HugeiconsIcon icon={DashboardSquareAddIcon} className="size-6" />
+                    Add widget
                   </button>
                 </div>
               </div>

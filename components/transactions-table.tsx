@@ -27,7 +27,7 @@ function formatAmount(amount: number) {
   return `${sign} $${Math.abs(amount).toFixed(2)}`
 }
 
-const PAGE_SIZE = 9
+const PAGE_SIZE = 8
 
 export function TransactionsTable() {
   const [isLoading, setIsLoading] = useState(false)

@@ -10,7 +10,7 @@ export function SplashScreen() {
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
-    const hideTimer = setTimeout(() => setVisible(false), 1000)
+    const hideTimer = setTimeout(() => setVisible(false), 600)
     // Let the bar grow on the next tick so the CSS transition has a
     // 0% starting frame to animate from (avoids a mobile-browser jump-cut).
     const startTimer = setTimeout(() => setProgress(100), 16)
@@ -37,7 +37,7 @@ export function SplashScreen() {
           <TrustKycMark className="size-10" />
           <div className="h-1 w-32 overflow-hidden rounded-full bg-foreground/15">
             <div
-              className="h-full rounded-full bg-foreground transition-[width] duration-1000 ease-linear"
+              className="h-full rounded-full bg-foreground transition-[width] duration-500 ease-linear"
               style={{ width: `${progress}%` }}
             />
           </div>

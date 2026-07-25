@@ -27,11 +27,11 @@ export function RecentContacts() {
           </button>
         </div>
 
-        <AvatarGroup className="mt-5 flex flex-wrap gap-2">
+        <AvatarGroup className="flex flex-wrap gap-2 w-full justify-center">
           {recentContacts.map((c) => (
             <Avatar
               key={c.name}
-              className="size-12 ring-2 ring-card cursor-pointer"
+              className="size-16 ring-4 ring-card cursor-pointer hover:-translate-y-1 ease-in-out transition-all"
             >
               <AvatarImage src={c.avatar || "/placeholder.svg"} alt={c.name} />
               <AvatarFallback>{c.name[0]}</AvatarFallback>
@@ -41,11 +41,11 @@ export function RecentContacts() {
         </AvatarGroup>
 
         <div className="mt-5 flex gap-3">
-          <Button className="flex flex-1 items-center justify-center gap-2 rounded-full bg-primary px-4 py-5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
+          <Button className="flex flex-1 items-center justify-center gap-2 rounded-full bg-primary px-4 py-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
             <HugeiconsIcon icon={AddCircleHalfDotIcon} className="size-4" />
             Add new
           </Button>
-          <Button variant={"outline"} className="flex flex-1 items-center justify-center gap-2 rounded-full border border-border px-4 py-5 text-sm font-medium transition-colors hover:bg-secondary">
+          <Button variant={"outline"} className="flex flex-1 items-center justify-center gap-2 rounded-full border border-border px-4 py-6 text-sm font-medium transition-colors hover:bg-secondary">
             <HugeiconsIcon icon={UserStoryIcon} className="size-4" />
             Manage
           </Button>

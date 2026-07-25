@@ -53,7 +53,7 @@ export function FeaturedCardSlider({
   return (
     <div className={cn("w-full", className)}>
       <div className="relative overflow-hidden rounded-3xl bg-[#ebbd57] p-0">
-        <div className="relative h-68 bg-[#ebbd57] p-0">
+        <div className="relative h-67 bg-[#ebbd57] p-0">
           <div
             className="flex h-full transition-transform duration-500 ease-out gap-0 bg-[#ebbd57]"
             style={{ transform: `translateX(-${activeIndex * 100}%)` }}

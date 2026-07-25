@@ -276,27 +276,33 @@ export const incomeData = [
 export const spendingData = [
   {
     "label": "Subscriptions",
-    "value": 10,
-    "color": "var(--chart-1)"
+    "value": 23490,
+    "color": "var(--chart-1)",
+    "percentage": 12,
   },
   {
     "label": "Transfers",
-    "value": 25,
-    "color": "var(--chart-2)"
+    "value": 57201,
+    "color": "var(--chart-2)",
+    "percentage": 30,
   },
   {
     "label": "Groceries",
-    "value": 15,
-    "color": "var(--chart-3)"
+    "value": 35600,
+    "color": "var(--chart-3)",
+    "percentage": 18,
   },
   {
     "label": "Bills",
-    "value": 33,
-    "color": "var(--chart-4)"
+    "value": 64510,
+    "color": "var(--chart-4)",
+    "percentage": 33,
   },
   {
     "label": "Payments",
-    "value": 17,
-    "color": "var(--chart-5)"
+    "value": 12902,
+    "color": "var(--chart-5)",
+    "percentage": 7,
   }
 ];
+23490+57201+35600+64510+12902

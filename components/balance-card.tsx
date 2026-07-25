@@ -42,7 +42,7 @@ export function BalanceCard() {
       </div>
 
       {/* Inner white card */}
-      <div className="flex flex-col justify-between gap-4 rounded-[1.75rem] bg-card dark:bg-muted p-6 pt-4 text-card-foreground h-fit w-full">
+      <div className="flex flex-col justify-between gap-4 rounded-[1.75rem] bg-muted p-6 pt-4 text-card-foreground h-fit w-full inset-shadow-sm">
         <div className="w-full">
           <p className="text-sm text-muted-foreground">Available Funds</p>
           <p className="mt-1 text-4xl font-semibold tracking-tight tabular-nums">

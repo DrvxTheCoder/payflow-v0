@@ -30,9 +30,8 @@ export function GlobeDemo() {
 export function GlobeDemoContrast() {
   return (
     <div className="bg-[#ebbd57] relative flex flex-col size-full items-center justify-center overflow-hidden px-2 pt-0 md:pt-15 pb-40 md:pb-60 shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5">
-        <Button className="hidden md:block absolute z-50 right-5 bottom-5 lg:bottom-13 rounded-full bg-black text-white hover:bg-neutral-800">
+        <Button className="hidden w-fit md:block absolute z-50 right-5 bottom-5 lg:bottom-13 rounded-full bg-black text-white hover:bg-neutral-800">
           Learn more
-          <ArrowUpRight className="size-4" />
         </Button>
         <span className="w-full pointer-events-none text-black text-center text-lg md:text-xl leading-none font-heading font-semibold whitespace-pre-wrap md:tracking-wide">
           {"Payflow is now global."}
