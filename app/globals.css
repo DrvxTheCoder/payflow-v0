@@ -7,6 +7,7 @@
 @theme inline {
   --font-heading: var(--font-special-gothic), sans-serif;
   --font-sans: var(--font-google-sans), sans-serif;
+  --font-geist: var(--font-geist-mono), sans-serif;
   --font-mono: var(--font-geist-mono), 'Geist Mono Fallback';
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -201,7 +202,7 @@
   display: flex !important;
   flex-direction: column !important;
    /* Smooth scroll fallback if component exceeds slot */
-  border-radius: 1.9rem;
+  border-radius: 2rem;
 }
 
 /* Hide scrollbars inside grid items for clean aesthetic */

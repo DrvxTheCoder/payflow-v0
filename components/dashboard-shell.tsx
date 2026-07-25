@@ -207,7 +207,7 @@ export function DashboardShell() {
                 gs-min-w="3" gs-min-h="7"
                 gs-x="0" gs-y="0"
               >
-                <div className="grid-stack-item-content">
+                <div className="grid-stack-item-content shadow-md">
                   <BalanceCard />
                 </div>
               </div>
@@ -219,7 +219,7 @@ export function DashboardShell() {
                 gs-min-w="3" gs-min-h="7"
                 gs-x="0" gs-y="7"
               >
-                <div className="grid-stack-item-content">
+                <div className="grid-stack-item-content shadow-md">
                   <AnalyticsPanel />
                 </div>
               </div>
@@ -243,7 +243,7 @@ export function DashboardShell() {
                 gs-min-w="2" gs-min-h="4"
                 gs-x="0" gs-y="14"
               >
-                <div className="grid-stack-item-content">
+                <div className="grid-stack-item-content shadow-md">
                   <SpendingDataChart />
                 </div>
               </div>
@@ -254,7 +254,7 @@ export function DashboardShell() {
                 gs-min-w="1" gs-min-h="4"
                 gs-x="2" gs-y="14"
               >
-                <div className="grid-stack-item-content">
+                <div className="grid-stack-item-content shadow-md">
                   <MonthlyLimitCard />
                 </div>
               </div>
@@ -267,7 +267,7 @@ export function DashboardShell() {
                 gs-min-w="3" gs-min-h="14" gs-max-h="20"
                 gs-x="3" gs-y="0"
               >
-                <div className="grid-stack-item-content">
+                <div className="grid-stack-item-content shadow-md">
                   <TransactionsTable />
                 </div>
               </div>
@@ -280,7 +280,7 @@ export function DashboardShell() {
                 gs-min-w="3" gs-min-h="7"
                 gs-x="9" gs-y="0"
               >
-                <div className="grid-stack-item-content">
+                <div className="grid-stack-item-content shadow-md">
                   <RecentContacts />
                 </div>
               </div>

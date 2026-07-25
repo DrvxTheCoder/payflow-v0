@@ -231,7 +231,7 @@ function CardFront({
       </div>
 
       <div className="flex flex-col gap-5">
-        <p className="font-mono text-md md:text-xl tracking-[0.14em] tabular-nums sm:text-2xl">
+        <p className="font-mono text-md md:text-lg tracking-[0.14em] tabular-nums sm:text-xl">
           {number.split("").map((char, i) => (
             <motion.span
               key={`${i}-${char}`}
@@ -562,7 +562,7 @@ export function AddCardDialog({
         
           <div className="absolute inset-x-0 top-0 z-10 transition-colors duration-300 ease-in-out">
             {phase === "success" && (
-            <Progress value={progress} className="h-1 rounded-none text-[#ebbd57] bg-[#ebbd57]" />
+            <Progress value={progress} className="h-1 rounded-none  bg-[#ebbd57]" />
             )}
           </div>
         <DialogHeader className={cn(phase !== "form" && "sr-only", "gap-0 px-4")}>

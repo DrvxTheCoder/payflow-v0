@@ -1,7 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowUpRight, ArrowDownLeft, ChevronDown } from "lucide-react"
+import { EyeIcon } from "./animated/icons/eye"
+import { EyeOffIcon } from "./animated/icons/eye-off"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -28,9 +29,12 @@ const currencies = [
 
 export function BalanceCard() {
   const [currency, setCurrency] = useState(currencies[0])
+  const [showBalance, setShowBalance] = useState(true)
+  const balance = "$18,248.44"
+  const hiddenBalance = "********"
 
   return (
-    <div className="flex flex-col justify-between items-center rounded-[2rem] p-2 bg-sidebar shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5">
+    <div className="flex flex-col justify-between items-center rounded-[2rem] p-2 bg-[#171717] shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5">
       <div className="flex items-center justify-between p-4 pb-0 w-full">
         <div className="flex items-center gap-3">
           {/* <TrustKycMark variant="filled" className="size-6 text-white" /> */}
@@ -43,12 +47,28 @@ export function BalanceCard() {
 
       {/* Inner white card */}
       <div className="flex flex-col justify-between gap-4 rounded-[1.75rem] bg-muted p-6 pt-4 text-card-foreground h-fit w-full inset-shadow-sm">
-        <div className="w-full">
+      <div className="w-full">
+        <div className="flex items-center justify-between">
           <p className="text-sm text-muted-foreground">Available Funds</p>
-          <p className="mt-1 text-4xl font-semibold tracking-tight tabular-nums">
-            $18,248.44
-          </p>
+
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setShowBalance((prev) => !prev)}
+            className="h-8 w-8 rounded-full text-muted-foreground hover:bg-secondary"
+          >
+            {showBalance ? (
+              <EyeOffIcon className="size-4" />
+            ) : (
+              <EyeIcon className="size-4" />
+            )}
+          </Button>
         </div>
+
+        <p className="mt-1 text-4xl font-medium tracking-tight tabular-nums font-mono">
+          ${showBalance ? "18,248.44" : "********"}
+        </p>
+      </div>
 
 
         <div className="w-full flex flex-row gap-0 justify-center">

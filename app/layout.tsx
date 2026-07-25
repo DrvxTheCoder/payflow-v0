@@ -1,18 +1,18 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 // import { Geist, Geist_Mono, Inter, } from 'next/font/google'
-import { Google_Sans, Special_Gothic_Expanded_One } from 'next/font/google'
+import { Google_Sans, Special_Gothic_Expanded_One, Geist, Geist_Mono } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { SplashScreen } from '@/components/splash-screen'
 import './globals.css'
 
 
-// const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
-// const geistMono = Geist_Mono({
-//   variable: '--font-geist-mono',
-//   subsets: ['latin'],
-// })
+const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
+const geistMono = Geist_Mono({
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+})
 
 // const inter = Inter({ subsets: ['latin'] })
 const googleSans = Google_Sans({
@@ -48,6 +48,7 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-icon.png',
   },
+  manifest: '/manifest.json',
 }
 
 export const viewport: Viewport = {
@@ -65,7 +66,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${googleSans.variable} ${specialGothic.variable} bg-background`}
+      className={`${googleSans.variable} ${specialGothic.variable} ${geistMono.variable} ${geistSans.variable} bg-background`}
       // className={`${geistSans.variable} ${geistMono.variable} bg-background`}
       suppressHydrationWarning
     >
