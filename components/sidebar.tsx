@@ -120,7 +120,7 @@ export function Sidebar({
   return (
     <aside
       className={cn(
-        "h-full shrink-0 flex-col gap-3 text-sidebar-foreground transition-[width] duration-300 ease-in-out overflow-hidden flex py-3 md:py-0",
+        "dark:bg-background md:dark:bg-sidebar h-full shrink-0 flex-col gap-3 text-sidebar-foreground transition-[width] duration-300 ease-in-out overflow-hidden flex py-3 md:py-0",
         collapsed
           ? "w-0 px-0 lg:w-28 lg:px-3"
           : "w-72 px-3 lg:w-68",
