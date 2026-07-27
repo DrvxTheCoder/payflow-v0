@@ -12,12 +12,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { BrandIcon } from "@/components/brand-icon"
 import { transactions, type TxStatus } from "@/lib/data"
 import { cn } from "@/lib/utils"
-import { RefreshButton } from "./unlumen-ui/refresh"
-import { ShimmerSkeleton } from "./unlumen-ui/shimmer-skeleton"
-import ExpandableSearchBar from "./expandable-search-bar"
+import { RefreshButton } from "../vendor/unlumen-ui/refresh"
+import { ShimmerSkeleton } from "../vendor/unlumen-ui/shimmer-skeleton"
+import ExpandableSearchBar from "../expandable-search-bar"
 
 const statusDot: Record<TxStatus, string> = {
-  Received: "bg-emerald-500",
+  Received: "bg-success",
   Sent: "bg-blue-500",
   Payment: "bg-fuchsia-500",
 }
@@ -115,7 +115,7 @@ export function TransactionsTable() {
           </TableHeader>
           <TableBody>
             {isLoading
-              ? Array.from({ length: 9 }).map((_, index) => (
+              ? Array.from({ length: 8 }).map((_, index) => (
                   <TableRow key={`skeleton-${index}`} className="border-border/40 group" tabIndex={0}>
                     <TableCell className="py-3">
                       <div className="flex items-center gap-3">
@@ -199,7 +199,7 @@ export function TransactionsTable() {
                     <TableCell
                       className={cn(
                         "whitespace-nowrap text-sm font-medium tabular-nums",
-                        tx.amount >= 0 ? "text-foreground" : "text-foreground",
+                        tx.amount >= 0 ? "text-success" : "text-foreground",
                       )}
                     >
                       {formatAmount(tx.amount)}
@@ -230,7 +230,7 @@ export function TransactionsTable() {
             onClick={() => setPage((p) => Math.max(1, p - 1))}
             disabled={currentPage <= 1}
             aria-label="Previous page"
-            className="flex size-8 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-secondary disabled:pointer-events-none disabled:opacity-40"
+            className="flex size-8 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-secondary disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
           >
             <ChevronLeft className="size-4" />
           </button>
@@ -242,7 +242,7 @@ export function TransactionsTable() {
             onClick={() => setPage((p) => Math.min(pageCount, p + 1))}
             disabled={currentPage >= pageCount}
             aria-label="Next page"
-            className="flex size-8 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-secondary disabled:pointer-events-none disabled:opacity-40"
+            className="flex size-8 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-secondary disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
           >
             <ChevronRight className="size-4" />
           </button>

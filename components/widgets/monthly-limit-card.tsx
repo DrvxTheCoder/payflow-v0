@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Gauge } from "./charts/gauge";
+import { Gauge } from "../vendor/charts/gauge";
 
 export default function MonthlyLimitCard() {
     // Track unique keys to force React to unmount and remount the Gauge

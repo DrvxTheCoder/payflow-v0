@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
-import { TrustKycAnimatedLogo } from "@/components/animated/logos/trustkyc-animated-v3"
+import { TrustKycAnimatedLogo } from "@/components/vendor/animated/logos/trustkyc-animated-v3"
 import { TrustKycMark } from "./trustkyc-mark"
 
 export function SplashScreen() {

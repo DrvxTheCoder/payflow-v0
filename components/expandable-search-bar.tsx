@@ -67,9 +67,11 @@ export default function ExpandableSearchBar(props: ExpandableSearchBarProps) {
     onSearch?.(value);
   };
 
-  useEffect(() => {
-    onChange?.(value);
-  }, [value, onChange]);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const nextValue = e.target.value;
+    setValue(nextValue);
+    onChange?.(nextValue);
+  };
 
   useEffect(() => {
     function onDocClick(e: MouseEvent) {
@@ -123,9 +125,9 @@ export default function ExpandableSearchBar(props: ExpandableSearchBarProps) {
         aria-label={open ? 'Close search' : 'Open search'}
         onClick={() => setOpen((s) => !s)}
         className={cn(
-          'absolute inset-0 z-20 grid place-items-center rounded-full border',
-          'bg-secondary text-foreground/80 hover:text-foreground transition-colors',
-          'dark:bg-secondary dark:text-foreground/80 dark:hover:text-foreground'
+          'absolute inset-0 z-10 cursor-pointer grid place-items-center rounded-full border',
+          'bg-card text-foreground/80 hover:text-foreground transition-colors',
+          'dark:text-foreground/80 dark:hover:text-foreground'
         )}
       >
         {open ? <X className='size-4' /> : <Search className='size-4' />}
@@ -137,7 +139,7 @@ export default function ExpandableSearchBar(props: ExpandableSearchBarProps) {
             key='form'
             onSubmit={handleSubmit}
             className={cn(
-              'absolute top-0 h-10 rounded-full border bg-background text-foreground shadow-sm overflow-hidden flex items-center',
+              'absolute top-0 h-10 rounded-full border bg-background text-foreground overflow-hidden flex items-center',
               expandDirection === 'left' ? 'right-0' : 'left-0'
             )}
             initial={{ width: COLLAPSED_SIZE, opacity: 0.98 }}
@@ -159,7 +161,7 @@ export default function ExpandableSearchBar(props: ExpandableSearchBarProps) {
                 ref={inputRef}
                 type='text'
                 value={value}
-                onChange={(e) => setValue(e.target.value)}
+                onChange={handleInputChange}
                 placeholder={placeholder}
                 className={cn(
                   'w-full bg-transparent text-sm outline-none placeholder-transparent whitespace-nowrap overflow-x-auto',

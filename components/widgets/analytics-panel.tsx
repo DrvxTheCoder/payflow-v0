@@ -5,11 +5,11 @@ import { MoreHorizontal } from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
 import { expensesData, incomeData } from "@/lib/data"
 import { cn } from "@/lib/utils"
-import { BarXAxis } from "@/components/charts/bar-x-axis"
-import { Grid } from "@/components/charts/grid"
-import { BarChart } from "@/components/charts/bar-chart"
-import { Bar } from "@/components/charts/bar"
-import { ChartTooltip } from "@/components/charts/tooltip"
+import { BarXAxis } from "@/components/vendor/charts/bar-x-axis"
+import { Grid } from "@/components/vendor/charts/grid"
+import { BarChart } from "@/components/vendor/charts/bar-chart"
+import { Bar } from "@/components/vendor/charts/bar"
+import { ChartTooltip } from "@/components/vendor/charts/tooltip"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/animated-tabs"
 
 function MiniBarChart({
@@ -60,7 +60,7 @@ const tabs = [
     badge: "+14% over last year",
     positive: true,
     data: incomeData,
-    color: "var(--chart-3)",
+    color: "var(--chart-2)",
   },
 ]
 
@@ -74,7 +74,7 @@ export function AnalyticsPanel() {
         <div className="flex items-center justify-between mb-5">
           <TabsList>
             {tabs.map((t) => (
-              <TabsTrigger key={t.value} value={t.value}>
+              <TabsTrigger key={t.value} value={t.value} className={cn( activeTab === t.value && "text-chart-1")}>
                 {t.label}
               </TabsTrigger>
             ))}

@@ -3,26 +3,23 @@
 import { useLayoutEffect, useRef, useState, useEffect } from "react"
 import { Sidebar } from "@/components/sidebar"
 import { Topbar } from "@/components/topbar"
-import { BalanceCard } from "@/components/balance-card"
-import { RecentContacts } from "@/components/recent-contacts"
-import { TransactionsTable } from "@/components/transactions-table"
-import { AnalyticsPanel } from "@/components/analytics-panel"
-import { DialogPortalContainerProvider } from "@/components/ui/dialog"
-import { FeatureTipCard } from "./feature-tip-card"
-import { HugeiconsIcon } from "@hugeicons/react"
-import { DashboardSquareAddIcon, DashboardSquareEditIcon } from "@hugeicons/core-free-icons"
-
 import { GridStack } from "gridstack"
 import "gridstack/dist/gridstack.min.css"
-import { FeaturedCardSlider } from "./featured-card-slider"
-import { GlobeDemo, GlobeDemoContrast } from "./globe-card"
-import { Button } from "./ui/button"
-import { ExchangeCard } from "./exchange-card"
-import { VisaLogo } from "./add-card-dialog"
-import { X, XIcon } from "lucide-react"
-import SpendingDataChart from "./spendingsCard"
-import { Separator } from "./ui/separator"
-import MonthlyLimitCard from "./monthly-limit-card"
+import { BalanceCard } from "@/components/widgets/balance-card"
+import { RecentContacts } from "@/components/widgets/recent-contacts"
+import { TransactionsTable } from "@/components/widgets/transactions-table"
+import { AnalyticsPanel } from "@/components/widgets/analytics-panel"
+import { FeaturedCardSlider } from "@/components/widgets/featured-card-slider"
+import { GlobeDemo, GlobeDemoContrast } from "@/components/widgets/globe-card"
+import { ExchangeCard } from "@/components/widgets/exchange-card"
+import MonthlyLimitCard from "@/components/widgets/monthly-limit-card"
+import SpendingDataChart from "@/components/widgets/spendings-card"
+import { FeatureTipCard } from "@/components/widgets/feature-tip-card"
+import { DialogPortalContainerProvider } from "@/components/ui/dialog"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { DashboardSquareAddIcon, DashboardSquareEditIcon } from "@hugeicons/core-free-icons"
+import { VisaLogo } from "@/components/widgets/add-card-dialog"
+import { Separator } from "@/components/ui/separator"
 
 const MOBILE_QUERY = "(max-width: 1024px)"
 const COOKIE_NAME = "sidebar-collapsed"
@@ -244,7 +241,8 @@ export function DashboardShell() {
                 gs-x="0" gs-y="14"
               >
                 <div className="grid-stack-item-content shadow-md">
-                  <SpendingDataChart />
+                  {/* <SpendingDataChart /> */}
+                  <SpendingDataChart variant="simple" />
                 </div>
               </div>
               

@@ -1,7 +1,7 @@
 import { Globe } from "@/components/ui/globe"
-import { WordRotate } from "./ui/word-rotate"
-import { TextLoop } from "./motion-primitives/text-loop";
-import { Button } from "./ui/button";
+import { WordRotate } from "../ui/word-rotate"
+import { TextLoop } from "../vendor/motion-primitives/text-loop";
+import { Button } from "../ui/button";
 import { ArrowUpRight } from "lucide-react";
 
 export function GlobeDemo() {

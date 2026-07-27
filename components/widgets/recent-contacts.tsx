@@ -2,12 +2,12 @@ import { ChevronRight, Plus, Pencil, LayoutGrid, CirclePlus, UserRoundPen } from
 import {
   AvatarGroup,
   AvatarGroupTooltip,
-} from '@/components/animate-ui/components/animate/avatar-group';
+} from '@/components/vendor/animate-ui/components/animate/avatar-group';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { recentContacts } from "@/lib/data"
 import { DashboardSquareAddIcon, AddCircleHalfDotIcon, UserStoryIcon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 export function RecentContacts() {
   return (

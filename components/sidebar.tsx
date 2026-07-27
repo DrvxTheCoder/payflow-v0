@@ -27,7 +27,7 @@ import {
   TooltipProvider, 
   Tooltip as Ttip, 
   TooltipContent as TtipContent, 
-  TooltipTrigger as TtipTrigger } from "@/components/animate-ui/components/animate/tooltip"
+  TooltipTrigger as TtipTrigger } from "@/components/vendor/animate-ui/components/animate/tooltip"
 import { PayflowMark } from "@/components/payflow-mark"
 import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/react'
 import { Menu09Icon, Home04Icon, CreditCardIcon, Invoice01Icon, DashboardCircleIcon, HistoryIcon } from '@hugeicons/core-free-icons'

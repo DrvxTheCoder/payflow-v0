@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { EyeIcon } from "./animated/icons/eye"
-import { EyeOffIcon } from "./animated/icons/eye-off"
+import { EyeIcon } from "../vendor/animated/icons/eye"
+import { EyeOffIcon } from "../vendor/animated/icons/eye-off"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -14,11 +14,11 @@ import {
 import { PayflowMark } from "@/components/payflow-mark"
 import { HugeiconsIcon } from '@hugeicons/react'
 import {  CircleArrowDownLeftIcon, CircleArrowUpRightIcon, CoinsDollarIcon } from '@hugeicons/core-free-icons'
-import { USAFlagIcon } from "@/components/country-flag-icons/usa"
-import { UKFlagIcon } from "@/components/country-flag-icons/uk"
-import { EuroFlagIcon } from "@/components/country-flag-icons/euro"
-import { AnimatedNumber } from "./motion-primitives/animated-number"
-import { TrustKycMark } from "./trustkyc-mark"
+import { USAFlagIcon } from "@/components/vendor/country-flag-icons/usa"
+import { UKFlagIcon } from "@/components/vendor/country-flag-icons/uk"
+import { EuroFlagIcon } from "@/components/vendor/country-flag-icons/euro"
+import { AnimatedNumber } from "../vendor/motion-primitives/animated-number"
+import { TrustKycMark } from "../trustkyc-mark"
 import AddCardDialog from "./add-card-dialog"
 
 const currencies = [

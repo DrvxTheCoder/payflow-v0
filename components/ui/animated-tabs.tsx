@@ -90,7 +90,7 @@ function TabsTrigger({
       {isActive && (
         <motion.span
           layoutId={`${layoutId}-indicator`}
-          className="absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-foreground"
+          className="absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-chart-1"
           transition={{ type: "spring", stiffness: 500, damping: 40 }}
         />
       )}
