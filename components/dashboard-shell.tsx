@@ -3,6 +3,7 @@
 import { useLayoutEffect, useRef, useState, useEffect } from "react"
 import { Sidebar } from "@/components/sidebar"
 import { Topbar } from "@/components/topbar"
+import { BottomNav } from "@/components/bottom-nav"
 import { GridStack } from "gridstack"
 import "gridstack/dist/gridstack.min.css"
 import { BalanceCard } from "@/components/widgets/balance-card"
@@ -20,6 +21,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { DashboardSquareAddIcon, DashboardSquareEditIcon } from "@hugeicons/core-free-icons"
 import { VisaLogo } from "@/components/widgets/add-card-dialog"
 import { Separator } from "@/components/ui/separator"
+
 
 const MOBILE_QUERY = "(max-width: 1024px)"
 const COOKIE_NAME = "sidebar-collapsed"
@@ -182,7 +184,7 @@ export function DashboardShell() {
 
         <main
           ref={dialogPortalContainerRef}
-          className="md:rounded-3xl relative flex-1 max-lg:min-w-full overflow-y-auto bg-background pb-5 md:pb-6 no-scrollbar"
+          className="md:rounded-3xl relative flex-1 max-lg:min-w-full overflow-y-auto bg-background pb-0 no-scrollbar"
         >
           <DialogPortalContainerProvider container={dialogPortalContainerRef}>
             <Topbar
@@ -191,6 +193,7 @@ export function DashboardShell() {
               isEditingWidget={isEditing}
               onToggleEditWidget={toggleEditMode}
             />
+
 
             <div
               ref={gridRef}
@@ -242,7 +245,7 @@ export function DashboardShell() {
               >
                 <div className="grid-stack-item-content shadow-md">
                   {/* <SpendingDataChart /> */}
-                  <SpendingDataChart variant="simple" />
+                  <SpendingDataChart variant="advanced" />
                 </div>
               </div>
               
@@ -360,6 +363,7 @@ export function DashboardShell() {
               </div>
 
             </div>
+            <BottomNav />
           </DialogPortalContainerProvider>
         </main>
       </div>

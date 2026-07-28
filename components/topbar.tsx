@@ -21,7 +21,7 @@ export function Topbar({
   onToggleEditWidget?: () => void
 }) {
   return (
-    <header className="flex items-center justify-between gap-4 p-6 px-4 sticky top-0 z-10 bg-background md:rounded-t-3xl">
+    <header className="flex items-center justify-between gap-4 p-6 px-4 sticky top-0 z-20 bg-background md:rounded-t-3xl">
       <div className="flex flex-1 items-center gap-3">
         {collapsed && (
           <button
