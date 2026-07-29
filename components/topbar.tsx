@@ -26,7 +26,7 @@ export function Topbar({
         {collapsed && (
           <button
             onClick={onToggle}
-            className="flex shrink-0 items-center justify-center p-2 rounded-full text-muted-foreground transition-colors hover:bg-primary/5 hover:text-foreground cursor-pointer"
+            className="hidden md:flex shrink-0 items-center justify-center p-2 rounded-full text-muted-foreground transition-colors hover:bg-primary/5 hover:text-foreground cursor-pointer"
             aria-label="Expand sidebar"
           >
             <HugeiconsIcon icon={Menu09Icon} className="size-5 text-primary" />
