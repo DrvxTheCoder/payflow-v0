@@ -30,7 +30,6 @@ const specialGothic = Special_Gothic_Expanded_One({
 export const metadata: Metadata = {
   title: 'Payflow — Dashboard',
   description: 'Manage your balance, transactions, contacts and analytics with Payflow.',
-  generator: 'v0.app',
   icons: {
     icon: [
       {

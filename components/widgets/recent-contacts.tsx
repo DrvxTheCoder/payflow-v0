@@ -1,11 +1,12 @@
-import { ChevronRight, Plus, Pencil, LayoutGrid, CirclePlus, UserRoundPen } from "lucide-react"
+import { ChevronRight } from "lucide-react"
 import {
   AvatarGroup,
   AvatarGroupTooltip,
 } from '@/components/vendor/animate-ui/components/animate/avatar-group';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { recentContacts } from "@/lib/data"
-import { DashboardSquareAddIcon, AddCircleHalfDotIcon, UserStoryIcon } from "@hugeicons/core-free-icons"
+import { CardTitle } from "@/components/card-title"
+import { AddCircleHalfDotIcon, UserStoryIcon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Button } from "../ui/button";
 
@@ -14,7 +15,7 @@ export function RecentContacts() {
       <div className="rounded-3xl flex flex-col justify-between bg-card p-5 shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5">
         <div className="flex items-start justify-between">
           <div>
-            <h2 className="text-lg font-semibold">Recent Contacts</h2>
+            <CardTitle>Recent Contacts</CardTitle>
             <p className="text-sm text-muted-foreground">
               Send or Request from your contact list
             </p>
@@ -29,14 +30,20 @@ export function RecentContacts() {
 
         <AvatarGroup className="flex flex-wrap gap-2 w-full justify-center">
           {recentContacts.map((c) => (
-            <Avatar
+            /* Focusable wrapper: the Avatar is a div, so keyboard users could
+               never reach it and the name was hover-only. */
+            <button
               key={c.name}
-              className="size-16 ring-4 ring-card cursor-pointer hover:-translate-y-1 ease-in-out transition-all"
+              type="button"
+              aria-label={c.name}
+              className="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
             >
-              <AvatarImage src={c.avatar || "/placeholder.svg"} alt={c.name} />
-              <AvatarFallback>{c.name[0]}</AvatarFallback>
-              <AvatarGroupTooltip>{c.name}</AvatarGroupTooltip>
-            </Avatar>
+              <Avatar className="size-16 ring-4 ring-card cursor-pointer hover:-translate-y-1 ease-in-out transition-all">
+                <AvatarImage src={c.avatar || "/placeholder.svg"} alt="" />
+                <AvatarFallback>{c.name[0]}</AvatarFallback>
+                <AvatarGroupTooltip>{c.name}</AvatarGroupTooltip>
+              </Avatar>
+            </button>
           ))}
         </AvatarGroup>
 

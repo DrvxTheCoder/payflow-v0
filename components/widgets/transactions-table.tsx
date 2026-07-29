@@ -1,4 +1,7 @@
+"use client"
+
 import { useMemo, useState } from "react"
+import Link from "next/link"
 import { Search, SlidersHorizontal, MoreHorizontal, ChevronLeft, ChevronRight } from "lucide-react"
 import {
   Table,
@@ -10,16 +13,51 @@ import {
 } from "@/components/ui/table"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { BrandIcon } from "@/components/brand-icon"
-import { transactions, type TxStatus } from "@/lib/data"
+import { transactions, type Transaction, type TxStatus } from "@/lib/data"
 import { cn } from "@/lib/utils"
 import { RefreshButton } from "../vendor/unlumen-ui/refresh"
 import { ShimmerSkeleton } from "../vendor/unlumen-ui/shimmer-skeleton"
 import ExpandableSearchBar from "../expandable-search-bar"
 
-const statusDot: Record<TxStatus, string> = {
-  Received: "bg-success",
-  Sent: "bg-blue-500",
-  Payment: "bg-fuchsia-500",
+// Tinted pill: token background at low opacity + token text colour. Hue is never
+// the only signal — the label is always rendered alongside the dot.
+const statusStyles: Record<TxStatus, string> = {
+  Received: "bg-success/10 text-success",
+  Sent: "bg-status-sent/10 text-status-sent",
+  Payment: "bg-status-payment/10 text-status-payment",
+}
+
+/** Avatar / brand mark for a transaction. */
+function TxAvatar({ tx }: { tx: Transaction }) {
+  if (tx.brand) return <BrandIcon className="hidden md:block size-12 md:size-9" brand={tx.brand} />
+  return (
+    <Avatar className="hidden md:block size-12 md:size-9">
+      <AvatarImage src={tx.avatar || "/placeholder.svg"} alt={tx.name} />
+      <AvatarFallback>{tx.name[0]}</AvatarFallback>
+    </Avatar>
+  )
+}
+
+/** Status indicator — dot plus an always-visible text label. */
+function StatusBadge({
+  status,
+  className,
+}: {
+  status: TxStatus
+  className?: string
+}) {
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs font-medium",
+        statusStyles[status],
+        className,
+      )}
+    >
+      <span className="size-1 shrink-0 rounded-full bg-current" />
+      {status}
+    </span>
+  )
 }
 
 function formatAmount(amount: number) {
@@ -98,19 +136,22 @@ export function TransactionsTable() {
         <Table>
           <TableHeader>
             <TableRow className="border-border/40 hover:bg-transparent">
+              {/* Below lg the table collapses to Description + Amount; the date,
+                  status and row menu fold into (or off) the first column. */}
               <TableHead className="text-xs font-normal text-muted-foreground">
-                Name
+                <span className="lg:hidden">Description</span>
+                <span className="hidden lg:inline">Name</span>
               </TableHead>
-              <TableHead className="text-xs font-normal text-muted-foreground">
+              <TableHead className="hidden text-xs font-normal text-muted-foreground lg:table-cell">
                 Date
               </TableHead>
-              <TableHead className="text-xs font-normal text-muted-foreground">
+              <TableHead className="hidden text-xs font-normal text-muted-foreground lg:table-cell">
                 Status
               </TableHead>
-              <TableHead className="text-xs font-normal text-muted-foreground">
+              <TableHead className="text-right text-xs font-normal text-muted-foreground">
                 Amount
               </TableHead>
-              <TableHead className="w-10" />
+              <TableHead className="hidden w-10 lg:table-cell" />
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -125,23 +166,24 @@ export function TransactionsTable() {
                         />
                         <div className="min-w-0 space-y-2">
                           <ShimmerSkeleton className="h-4 w-32" />
-                          <ShimmerSkeleton className="h-3 w-24" />
+                          <ShimmerSkeleton className="hidden h-3 w-24 lg:block" />
+                          <ShimmerSkeleton className="h-4 w-20 lg:hidden" />
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden lg:table-cell">
                       <ShimmerSkeleton className="h-4 w-36" />
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden lg:table-cell">
                       <div className="inline-flex items-center gap-2">
                         <ShimmerSkeleton className="h-3 w-3 rounded-full" rounded="full" />
                         <ShimmerSkeleton className="h-4 w-16" />
                       </div>
                     </TableCell>
-                    <TableCell>
-                      <ShimmerSkeleton className="h-4 w-20" />
+                    <TableCell className="text-right">
+                      <ShimmerSkeleton className="ml-auto h-4 w-20" />
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden lg:table-cell">
                       <button
                         className="flex size-7 items-center justify-center rounded-full text-muted-foreground transition-opacity duration-150 opacity-100 sm:opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 hover:bg-secondary"
                         aria-label="More options"
@@ -163,48 +205,35 @@ export function TransactionsTable() {
                   <TableRow key={tx.id} className="border-border/40 group" tabIndex={0}>
                     <TableCell className="py-3">
                       <div className="flex items-center gap-3">
-                        {tx.brand ? (
-                          <BrandIcon brand={tx.brand} />
-                        ) : (
-                          <Avatar className="size-9">
-                            <AvatarImage
-                              src={tx.avatar || "/placeholder.svg"}
-                              alt={tx.name}
-                            />
-                            <AvatarFallback>{tx.name[0]}</AvatarFallback>
-                          </Avatar>
-                        )}
-                        <div className="min-w-0">
-                          <p className="truncate text-sm font-medium">{tx.name}</p>
-                          <p className="truncate text-xs text-muted-foreground">
+                        <TxAvatar tx={tx} />
+                        <div className="min-w-0 gap-1">
+                          <p className="truncate text-sm font-bold">{tx.name}</p>
+                          <p className="hidden truncate text-xs text-muted-foreground lg:block">
                             {tx.account}
                           </p>
+                          <p className="text-sm text-muted-foreground lg:hidden">{tx.date}</p>
+                          <StatusBadge
+                            status={tx.status}
+                            className="mt-1 lg:hidden"
+                          />
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell className="whitespace-nowrap text-sm text-muted-foreground">
+                    <TableCell className="hidden whitespace-nowrap text-sm text-muted-foreground lg:table-cell">
                       {tx.date}
                     </TableCell>
-                    <TableCell>
-                      <span className="inline-flex items-center gap-1.5 text-sm">
-                        <span
-                          className={cn(
-                            "size-1.5 rounded-full",
-                            statusDot[tx.status],
-                          )}
-                        />
-                        {tx.status}
-                      </span>
+                    <TableCell className="hidden lg:table-cell">
+                      <StatusBadge status={tx.status} />
                     </TableCell>
                     <TableCell
                       className={cn(
-                        "whitespace-nowrap text-sm font-medium tabular-nums",
+                        "whitespace-nowrap text-right text-sm font-medium tabular-nums",
                         tx.amount >= 0 ? "text-success" : "text-foreground",
                       )}
                     >
                       {formatAmount(tx.amount)}
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden lg:table-cell">
                       <button
                         className="flex size-7 items-center justify-center rounded-full text-muted-foreground transition-opacity duration-150 opacity-100 sm:opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 hover:bg-secondary"
                         aria-label="More options"
@@ -218,7 +247,8 @@ export function TransactionsTable() {
         </Table>
       </div>
 
-      <div className="mt-4 flex items-center justify-between">
+      {/* Pagination is desktop-only; below lg it's replaced by the link below */}
+      <div className="mt-4 hidden items-center justify-between lg:flex">
         <p className="text-xs text-muted-foreground">
           {filtered.length === 0
             ? "0 results"
@@ -248,6 +278,15 @@ export function TransactionsTable() {
           </button>
           <RefreshButton label="Refresh" className="p-4 bg-card" onClick={handleRefresh} variant="outline" disabled={isLoading} />
         </div>
+      </div>
+      <div className="w-full flex justify-center items-center">
+        <Link
+          href="/history"
+          className="mt-4 flex w-fit items-center justify-center gap-1.5 rounded-full border border-border px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground lg:hidden"
+        >
+          View all transactions
+          <ChevronRight className="size-4" />
+        </Link>
       </div>
     </div>
   )

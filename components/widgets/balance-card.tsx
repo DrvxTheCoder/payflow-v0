@@ -11,7 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { PayflowMark } from "@/components/payflow-mark"
+import { CardTitle } from "@/components/card-title"
 import { HugeiconsIcon } from '@hugeicons/react'
 import {  CircleArrowDownLeftIcon, CircleArrowUpRightIcon, CoinsDollarIcon } from '@hugeicons/core-free-icons'
 import { USAFlagIcon } from "@/components/vendor/country-flag-icons/usa"
@@ -30,43 +30,49 @@ const currencies = [
 export function BalanceCard() {
   const [currency, setCurrency] = useState(currencies[0])
   const [showBalance, setShowBalance] = useState(true)
-  const balance = "$18,248.44"
-  const hiddenBalance = "********"
+  // Split so the cents can be de-emphasised, matching the hero figure in AnalyticsPanel
+  const balanceWhole = "$18,248"
+  const balanceCents = ".44"
+  const hiddenBalance = "•••••••••••"
 
   return (
-    <div className="flex flex-col justify-between items-center rounded-[2rem] p-2 bg-[#171717] shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5">
-      <div className="flex items-center justify-between p-4 pb-0 w-full">
+    <div className="flex flex-col justify-between items-center rounded-[2rem] p-2 bg-balance-card shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5">
+      <div className="flex items-center justify-between p-4 md:pb-0 w-full">
         <div className="flex items-center gap-3">
           {/* <TrustKycMark variant="filled" className="size-6 text-white" /> */}
           <div>
-            <p className="text-lg font-heading font-extrabold text-white">Total Balance</p>
+            <CardTitle className="text-balance-card-foreground">Total Balance</CardTitle>
           </div>
         </div>
-        <AddCardDialog />
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={() => setShowBalance((prev) => !prev)}
+          className="rounded-full bg-balance-card hover:balance-card-foreground/20 border border-balance-card-foreground/20"
+        >
+          {showBalance ? (
+            <EyeOffIcon className="size-4 text-balance-card-foreground/50" />
+          ) : (
+            <EyeIcon className="size-4 text-balance-card-foreground/50" />
+          )}
+        </Button>
       </div>
 
       {/* Inner white card */}
-      <div className="flex flex-col justify-between gap-4 rounded-[1.75rem] bg-muted p-6 pt-4 text-card-foreground h-fit w-full inset-shadow-sm">
+      <div className="flex flex-col justify-between gap-6 rounded-[1.75rem] bg-balance-card-inner p-6 pt-4 text-card-foreground h-fit w-full inset-shadow-sm">
       <div className="w-full">
-        <div className="flex items-center justify-between">
-          <p className="text-sm text-muted-foreground">Available Funds</p>
+        
+        <p className="text-sm text-muted-foreground">Available Funds</p>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setShowBalance((prev) => !prev)}
-            className="h-8 w-8 rounded-full text-muted-foreground hover:bg-secondary"
-          >
-            {showBalance ? (
-              <EyeOffIcon className="size-4" />
-            ) : (
-              <EyeIcon className="size-4" />
-            )}
-          </Button>
-        </div>
-
-        <p className="mt-1 text-4xl font-semibold tracking-tight tabular-nums font-mono">
-          ${showBalance ? "18,248.44" : "********"}
+        <p className="mt-1 text-4xl font-semibold tracking-tight tabular-nums animate-in">
+          {showBalance ? (
+            <>
+              {balanceWhole}
+              <span className="text-muted-foreground/60">{balanceCents}</span>
+            </>
+          ) : (
+            hiddenBalance
+          )}
         </p>
       </div>
 

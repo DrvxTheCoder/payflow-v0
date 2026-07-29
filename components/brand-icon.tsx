@@ -19,7 +19,7 @@ export function BrandIcon({
   return (
     <span
       className={cn(
-        "flex size-9 shrink-0 items-center justify-center rounded-full",
+        "flex flex-col size-9 shrink-0 items-center justify-end rounded-full",
         styles[brand],
         className,
       )}
