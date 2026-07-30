@@ -247,13 +247,42 @@ export const transactions: Transaction[] = [
 //   { name: "Marcus", avatar: "/avatars/robert.png" },
 // ]
 
-export const recentContacts = [
-  { name: "Kari", avatar: "/avatars/kari.png" },
-  { name: "Nataly", avatar: "/avatars/nataly.png" },
-  { name: "Alec", avatar: "/avatars/alec.png" },
-  { name: "Kelly", avatar: "/avatars/kelly.png" },
-  { name: "Nadia", avatar: "/avatars/contact1.png" },
+export type Contact = {
+  id: string
+  name: string
+  phone: string
+  avatar: string
+}
+
+export const recentContacts: Contact[] = [
+  { id: "kari", name: "Kari", phone: "77 310 48 65", avatar: "/avatars/kari.png" },
+  { id: "nataly", name: "Nataly", phone: "77 415 22 09", avatar: "/avatars/nataly.png" },
+  { id: "alec", name: "Alec", phone: "76 208 77 41", avatar: "/avatars/alec.png" },
+  { id: "kelly", name: "Kelly", phone: "78 662 13 90", avatar: "/avatars/kelly.png" },
+  { id: "nadia", name: "Nadia", phone: "70 934 56 12", avatar: "/avatars/contact1.png" },
 ]
+
+/** Fallback recipient when a scanned code isn't one of ours — keeps the flow demoable. */
+export const demoRecipient: Contact = {
+  id: "xavier",
+  name: "Xavier",
+  phone: "77 310 48 65",
+  avatar: "/avatars/robert.png",
+}
+
+/** The signed-in user, encoded into the My Card QR. */
+export const myCard: Contact = {
+  id: "me",
+  name: "Paul Flan",
+  phone: "77 555 01 24",
+  avatar: "/avatars/lucy.png",
+}
+
+export function findContact(id: string): Contact | null {
+  if (id === myCard.id) return myCard
+  if (id === demoRecipient.id) return demoRecipient
+  return recentContacts.find((contact) => contact.id === id) ?? null
+}
 
 export const expensesData = [
   { month: "Jan", value: 9200 },

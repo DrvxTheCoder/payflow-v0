@@ -3,14 +3,20 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-import { motion, AnimatePresence } from "framer-motion"
+import { useRef } from "react"
+/* `motion/react`, not `framer-motion` — same library, but two entry points in
+   one bundle risks a duplicate copy and two separate layout-animation trees. */
+import { motion, AnimatePresence } from "motion/react"
 import { cn } from "@/lib/utils"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { QrCode01Icon } from "@hugeicons/core-free-icons"
 import { bottomNavItems, isNavItemActive } from "@/lib/navigation"
+import { usePaymentFlow } from "@/components/payment-flow/payment-flow-provider"
 
 export function BottomNav() {
   const pathname = usePathname()
+  const scanButtonRef = useRef<HTMLButtonElement>(null)
+  const { open } = usePaymentFlow()
 
   return (
     <>
@@ -30,7 +36,9 @@ export function BottomNav() {
         <div className="relative pointer-events-auto">
           
           {/* Floating Scan Button */}
-          <button 
+          <button
+            ref={scanButtonRef}
+            onClick={() => open(scanButtonRef.current?.getBoundingClientRect())}
             className="absolute -top-20 right-0 md:-right-30 flex items-center justify-center size-16 bg-foreground text-background rounded-full shadow-xl transition-transform active:scale-95"
             aria-label="Scan QR Code"
           >

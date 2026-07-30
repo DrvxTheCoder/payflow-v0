@@ -6,6 +6,7 @@ import { Topbar } from "@/components/topbar"
 import { BottomNav } from "@/components/bottom-nav"
 import { DialogPortalContainerProvider } from "@/components/ui/dialog"
 import { WidgetEditProvider } from "@/components/widget-edit-context"
+import { PaymentFlowProvider } from "@/components/payment-flow/payment-flow-provider"
 
 const MOBILE_QUERY = "(max-width: 1024px)"
 const COOKIE_NAME = "sidebar-collapsed"
@@ -61,7 +62,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
               {children}
 
-              <BottomNav />
+              {/* Wraps only the nav that triggers it; the overlay itself
+                  portals to <body> so <main> can't clip it. */}
+              <PaymentFlowProvider>
+                <BottomNav />
+              </PaymentFlowProvider>
             </DialogPortalContainerProvider>
           </main>
         </div>
