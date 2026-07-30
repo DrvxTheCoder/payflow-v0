@@ -173,8 +173,8 @@ function DashboardGridDesktop() {
           gs-min-w="3" gs-min-h="7"
           gs-x="0" gs-y="7"
         >
-          <div className="grid-stack-item-content shadow-md">
-            <AnalyticsPanel />
+          <div className="grid-stack-item-content">
+            <ActionsCard />
           </div>
         </div>
 

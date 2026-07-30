@@ -74,7 +74,7 @@ export function AnalyticsPanel() {
         <div className="flex items-center justify-between mb-5">
           <TabsList>
             {tabs.map((t) => (
-              <TabsTrigger key={t.value} value={t.value} className={cn( activeTab === t.value && "text-chart-1")}>
+              <TabsTrigger key={t.value} value={t.value} className={cn("text-base font-bold", activeTab === t.value && "text-chart-1")}>
                 {t.label}
               </TabsTrigger>
             ))}

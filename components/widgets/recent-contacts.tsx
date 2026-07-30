@@ -15,7 +15,7 @@ export function RecentContacts() {
       <div className="rounded-3xl flex flex-col justify-between bg-card p-5 shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5">
         <div className="flex items-start justify-between">
           <div>
-            <CardTitle>Recent Contacts</CardTitle>
+            <CardTitle className="font-sans">Recent Contacts</CardTitle>
             <p className="text-sm text-muted-foreground">
               Send or Request from your contact list
             </p>

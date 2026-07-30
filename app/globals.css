@@ -190,6 +190,9 @@
   body {
     @apply bg-background text-foreground;
     touch-action: pan-x pan-y;
+    /* Required by the Base UI drawer: on iOS Safari the overlay is absolutely
+       positioned and needs a positioned body to cover a scrolled viewport. */
+    position: relative;
   }
   html {
     @apply font-sans;

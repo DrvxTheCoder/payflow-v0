@@ -101,7 +101,7 @@ export function Topbar({
               <ThemeTogglerButton
                 variant="outline"
                 size="lg"
-                className="rounded-full cursor-pointer"
+                className="rounded-full cursor-pointer hidden md:flex"
                 direction="btt"
                 aria-label={themeLabel}
               />

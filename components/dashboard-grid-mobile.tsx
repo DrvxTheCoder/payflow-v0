@@ -22,7 +22,7 @@ export function DashboardGridMobile() {
   return (
     <div className="flex flex-col gap-3 px-4 pt-3">
       <BalanceCard />
-      {/* <ActionsCard /> */}
+      <ActionsCard />
       <TransactionsTable />
       <AnalyticsPanel />
       <FeaturedCardSlider

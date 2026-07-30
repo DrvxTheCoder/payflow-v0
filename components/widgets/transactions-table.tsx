@@ -29,9 +29,9 @@ const statusStyles: Record<TxStatus, string> = {
 
 /** Avatar / brand mark for a transaction. */
 function TxAvatar({ tx }: { tx: Transaction }) {
-  if (tx.brand) return <BrandIcon className="hidden md:block size-12 md:size-9" brand={tx.brand} />
+  if (tx.brand) return <BrandIcon className="hidden md:flex size-12 md:size-9" brand={tx.brand} />
   return (
-    <Avatar className="hidden md:block size-12 md:size-9">
+    <Avatar className="hidden md:flex flex-row items-center justify-center size-12 md:size-9">
       <AvatarImage src={tx.avatar || "/placeholder.svg"} alt={tx.name} />
       <AvatarFallback>{tx.name[0]}</AvatarFallback>
     </Avatar>
@@ -103,8 +103,8 @@ export function TransactionsTable() {
   )
 
   return (
-    <div className="flex h-fit flex-col rounded-[2rem] bg-card p-6 shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5">
-      <div className="flex items-start justify-between">
+    <div className="flex h-fit flex-col rounded-[2rem] bg-card py-6 lg:p-6 shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5">
+      <div className="flex items-start justify-between px-6 lg:px-0">
         <div>
           <h2 className="text-lg font-heading font-extrabold">Transactions</h2>
           <p className="text-sm text-muted-foreground">
@@ -138,7 +138,7 @@ export function TransactionsTable() {
             <TableRow className="border-border/40 hover:bg-transparent">
               {/* Below lg the table collapses to Description + Amount; the date,
                   status and row menu fold into (or off) the first column. */}
-              <TableHead className="text-xs font-normal text-muted-foreground">
+              <TableHead className="text-xs font-normal text-muted-foreground px-6 lg:px-0">
                 <span className="lg:hidden">Description</span>
                 <span className="hidden lg:inline">Name</span>
               </TableHead>
@@ -148,7 +148,7 @@ export function TransactionsTable() {
               <TableHead className="hidden text-xs font-normal text-muted-foreground lg:table-cell">
                 Status
               </TableHead>
-              <TableHead className="text-right text-xs font-normal text-muted-foreground">
+              <TableHead className="text-right text-xs font-normal text-muted-foreground px-6 lg:px-0">
                 Amount
               </TableHead>
               <TableHead className="hidden w-10 lg:table-cell" />
@@ -203,11 +203,11 @@ export function TransactionsTable() {
                 )
                 : paginated.map((tx) => (
                   <TableRow key={tx.id} className="border-border/40 group" tabIndex={0}>
-                    <TableCell className="py-3">
+                    <TableCell className="py-3 px-6 lg:px-0">
                       <div className="flex items-center gap-3">
                         <TxAvatar tx={tx} />
                         <div className="min-w-0 gap-1">
-                          <p className="truncate text-sm font-bold">{tx.name}</p>
+                          <p className="truncate text-base lg:text-sm font-bold">{tx.name}</p>
                           <p className="hidden truncate text-xs text-muted-foreground lg:block">
                             {tx.account}
                           </p>
@@ -227,7 +227,7 @@ export function TransactionsTable() {
                     </TableCell>
                     <TableCell
                       className={cn(
-                        "whitespace-nowrap text-right text-sm font-medium tabular-nums",
+                        "whitespace-nowrap text-right text-sm font-medium tabular-nums px-6 lg:px-0",
                         tx.amount >= 0 ? "text-success" : "text-foreground",
                       )}
                     >

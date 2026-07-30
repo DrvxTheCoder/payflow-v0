@@ -79,21 +79,21 @@ export function BalanceCard() {
 
         <div className="w-full flex flex-row gap-2 justify-center items-center">
           <Button
-            className="py-6 bg-card hover:bg-card/80 text-primary flex flex-row items-center justify-between rounded-full border border-muted-foreground/10 text-sm font-medium transition-colors">
+            className="py-6 bg-card hover:bg-card/80 text-primary flex flex-row items-center justify-between rounded-full border border-muted-foreground/10 text-sm font-bold transition-colors">
               <HugeiconsIcon icon={CoinsDollarIcon} className="size-4 md:size-6 text-primary" />
               Top Up
               <span />
           </Button>
           <div className="flex flex-row gap-0 justify-center">
             <Button
-              className="py-6 bg-secondary hover:bg-muted-foreground/10 text-primary flex flex-row items-center justify-between rounded-none rounded-l-full border border-muted-foreground/10 text-sm font-medium transition-colors">
+              className="py-6 bg-secondary hover:bg-muted-foreground/10 text-primary flex flex-row items-center justify-between rounded-none rounded-l-full border border-muted-foreground/10 text-sm font-bold transition-colors">
                 <HugeiconsIcon icon={CircleArrowUpRightIcon} className="size-4 md:size-6 text-muted-foreground/50" />
                 Send
                 <span />
             </Button> 
 
             <Button
-              className="py-6 bg-secondary hover:bg-muted-foreground/10 text-primary flex flex-row items-center justify-between rounded-none rounded-r-full border border-muted-foreground/10 border-l-0 text-sm font-medium transition-colors"
+              className="py-6 bg-secondary hover:bg-muted-foreground/10 text-primary flex flex-row items-center justify-between rounded-none rounded-r-full border border-muted-foreground/10 border-l-0 text-sm font-bold transition-colors"
             >
               <HugeiconsIcon icon={CircleArrowDownLeftIcon} className="size-4 md:size-6 text-muted-foreground/50" />
               Request
