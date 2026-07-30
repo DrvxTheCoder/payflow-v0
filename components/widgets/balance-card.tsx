@@ -18,7 +18,6 @@ import { USAFlagIcon } from "@/components/vendor/country-flag-icons/usa"
 import { UKFlagIcon } from "@/components/vendor/country-flag-icons/uk"
 import { EuroFlagIcon } from "@/components/vendor/country-flag-icons/euro"
 import { AnimatedNumber } from "../vendor/motion-primitives/animated-number"
-import { TrustKycMark } from "../trustkyc-mark"
 import AddCardDialog from "./add-card-dialog"
 
 const currencies = [
@@ -39,7 +38,6 @@ export function BalanceCard() {
     <div className="flex flex-col justify-between items-center rounded-[2rem] p-2 bg-balance-card shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--sidebar-foreground)_6%,transparent)] ring-1 ring-sidebar-foreground/5">
       <div className="flex items-center justify-between p-4 md:pb-0 w-full">
         <div className="flex items-center gap-3">
-          {/* <TrustKycMark variant="filled" className="size-6 text-white" /> */}
           <div>
             <CardTitle className="text-balance-card-foreground">Total Balance</CardTitle>
           </div>

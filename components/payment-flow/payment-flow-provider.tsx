@@ -29,7 +29,7 @@ export type FlowStep =
 /** Beat between decoding a payload and the Send Money screen springing up. */
 const DETECTED_BEAT_MS = 350
 const SUBMIT_MS = 3000
-const SUCCESS_MS = 1000
+const SUCCESS_MS = 3000
 
 type Amount = { send: number; receive: number }
 

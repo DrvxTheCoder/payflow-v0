@@ -44,7 +44,7 @@ function AmountField({
     <button
       type="button"
       onClick={onActivate}
-      className="w-full space-y-1 pt-4 text-left outline-none"
+      className="w-full space-y-0 p-2  text-left outline-none"
     >
       <span
         className={cn(
@@ -57,7 +57,7 @@ function AmountField({
 
       <span
         className={cn(
-          "flex h-11 items-center border-b-2 font-heading text-3xl transition-colors",
+          "flex h-8 items-center border-b font-heading text-2xl transition-colors py-6",
           isActive ? "border-foreground text-foreground" : "border-border text-foreground/70"
         )}
       >
@@ -181,7 +181,7 @@ export function SendMoneyScreen({
           initial="hidden"
           animate="shown"
           variants={{ shown: { transition: { staggerChildren: 0.04, delayChildren: 0.08 } } }}
-          className="flex flex-col items-center gap-2 py-6"
+          className="flex flex-col items-center gap-2"
         >
           <motion.div
             variants={{

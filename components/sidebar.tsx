@@ -16,7 +16,7 @@ import { HugeiconsIcon } from '@hugeicons/react'
 import { Menu09Icon } from '@hugeicons/core-free-icons'
 import { cn } from "@/lib/utils"
 import { sidebarNavItems, isNavItemActive, type NavItem } from "@/lib/navigation"
-import { TrustKycMark } from "./trustkyc-mark"
+import { PayflowMark } from "./payflow-mark"
 
 // 1. Extracted Nav Link element to a clean, isolated component to guarantee state tracking works
 interface NavLinkProps {
@@ -108,7 +108,7 @@ export function Sidebar({
           )}
         >
           <div className="flex items-center gap-2 overflow-hidden">
-            <TrustKycMark variant="filled" className="size-10" />
+            <PayflowMark variant="filled" className="size-10" />
             {!collapsed && (
               <span className="text-lg tracking-tight font-heading">
                 payflow<small className="text-xs align-super">™</small>

@@ -273,9 +273,9 @@ export const demoRecipient: Contact = {
 /** The signed-in user, encoded into the My Card QR. */
 export const myCard: Contact = {
   id: "me",
-  name: "Paul Flan",
-  phone: "77 555 01 24",
-  avatar: "/avatars/lucy.png",
+  name: "Paul Ismael Flan",
+  phone: "77 541 44 73",
+  avatar: "/avatars/paulflan.png",
 }
 
 export function findContact(id: string): Contact | null {

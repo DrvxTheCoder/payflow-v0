@@ -25,29 +25,40 @@ export function MyCard() {
             with the code's quiet zone. */}
         <span
           aria-hidden="true"
-          className="absolute inset-0 opacity-25 [background-image:repeating-linear-gradient(45deg,transparent_0_14px,rgba(0,0,0,0.28)_14px_20px),repeating-linear-gradient(-45deg,transparent_0_14px,rgba(0,0,0,0.16)_14px_20px)]"
+          className="absolute inset-0 opacity-25 bg-chart-1"
         />
 
         <div className="relative flex flex-col gap-6">
-          <div className="rounded-3xl bg-white p-5">
+          <div className="relative rounded-xl bg-white p-5">
+            {/* Level H so the modules hidden behind the centred mark stay recoverable. */}
             <QRCodeSVG
               value={buildPayload(myCard)}
-              level="M"
+              level="H"
               marginSize={0}
               className="h-auto w-full"
               bgColor="#ffffff"
               fgColor="#000000"
             />
+            {/* inset-5 matches the wrapper padding, so percentages below are
+                relative to the code itself rather than the padded box. */}
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-5 flex items-center justify-center"
+            >
+              <span className="flex aspect-square w-[22%] items-center justify-center rounded-lg bg-white">
+                <PayflowMark
+                  variant="filled"
+                  className="h-auto w-[78%] text-black"
+                />
+              </span>
+            </span>
           </div>
 
-          <div className="flex items-end justify-between gap-3">
-            <PayflowMark className="size-8 text-black" />
-            <div className="text-right">
-              <p className="font-heading text-base leading-tight text-black">
-                {myCard.name}
-              </p>
-              <p className="text-sm text-black/60">{myCard.phone}</p>
-            </div>
+          <div className="text-center">
+            <p className="font-heading text-base leading-tight text-black">
+              {myCard.name}
+            </p>
+            <p className="text-sm text-black/60">{myCard.phone}</p>
           </div>
         </div>
       </motion.div>
